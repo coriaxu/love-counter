@@ -73,47 +73,117 @@
     transform: translateY(0);
 }
 
-/* 倒计时样式 */
+/* 倒计时整体容器 */
 .anniversary-countdown {
     margin-top: 30px;
     text-align: center;
+    position: relative;
 }
 
+/* 玻璃效果卡片 */
 .countdown-glass {
-    background: rgba(255, 255, 255, 0.1);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.4), rgba(255, 232, 213, 0.2));
     backdrop-filter: blur(10px);
-    border-radius: 15px;
-    padding: 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 8px 32px rgba(255, 182, 193, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    position: relative;
+    overflow: hidden;
 }
 
+/* 装饰性花朵和叶子 */
+.countdown-glass::before,
+.countdown-glass::after {
+    content: '';
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 0.6;
+}
+
+.countdown-glass::before {
+    top: -20px;
+    left: -20px;
+    background-image: url('/static/flower-top-left.png');
+    transform: rotate(-45deg);
+}
+
+.countdown-glass::after {
+    bottom: -20px;
+    right: -20px;
+    background-image: url('/static/flower-bottom-right.png');
+    transform: rotate(135deg);
+}
+
+/* 标题样式 */
 .countdown-glass h2 {
-    color: #8B4513;
-    font-size: 1.2em;
-    margin-bottom: 15px;
+    color: #D4AF37;
+    font-size: 1.4em;
+    margin-bottom: 25px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-family: 'Ma Shan Zheng', cursive;
 }
 
+/* 倒计时数字容器 */
 .countdown-timer {
     display: flex;
     justify-content: center;
-    gap: 15px;
+    gap: 25px;
+    position: relative;
+    z-index: 1;
 }
 
+/* 每个倒计时项目 */
 .countdown-item {
     display: flex;
     flex-direction: column;
     align-items: center;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.6), rgba(255, 232, 213, 0.3));
+    padding: 15px;
+    border-radius: 15px;
+    min-width: 80px;
+    box-shadow: 0 4px 15px rgba(255, 182, 193, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.5);
 }
 
+/* 数字样式 */
 .countdown-value {
-    font-size: 2em;
+    font-size: 2.5em;
     font-weight: bold;
-    color: #8B4513;
+    color: #E5B73B;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-family: 'Arial', sans-serif;
     min-width: 1.5em;
 }
 
+/* 标签样式 */
 .countdown-label {
-    font-size: 0.8em;
-    color: #8B4513;
-    margin-top: 5px;
+    font-size: 1em;
+    color: #D4AF37;
+    margin-top: 8px;
+    font-family: 'Ma Shan Zheng', cursive;
 }
+
+/* 闪烁星星效果 */
+.countdown-glass .star {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: #FFD700;
+    border-radius: 50%;
+    animation: twinkle 1.5s infinite;
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0; }
+    50% { opacity: 1; }
+}
+
+/* 添加多个星星 */
+.countdown-glass .star:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
+.countdown-glass .star:nth-child(2) { top: 30%; right: 15%; animation-delay: 0.3s; }
+.countdown-glass .star:nth-child(3) { bottom: 25%; left: 20%; animation-delay: 0.6s; }
+.countdown-glass .star:nth-child(4) { bottom: 15%; right: 25%; animation-delay: 0.9s; }

@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='seasonal.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='anniversary.css') }}">
 </head>
-<body {% if is_after_anniversary %}data-after-anniversary="true"{% endif %}>
+<body>
     <div id="seasonal-container"></div>
     <div class="container">
         <div class="love-counter">
@@ -26,12 +26,11 @@
             
             <!-- 15周年倒计时区块 -->
             <div class="anniversary-countdown">
-                {% if not is_after_anniversary %}
                 <div class="countdown-glass">
                     <h2>距离我们的15周年纪念日还有</h2>
                     <div class="countdown-timer">
                         <div class="countdown-item">
-                            <span class="countdown-value" id="countdown-days">{{ (5478 - days) }}</span>
+                            <span class="countdown-value" id="countdown-days">--</span>
                             <span class="countdown-label">天</span>
                         </div>
                         <div class="countdown-item">
@@ -48,7 +47,6 @@
                         </div>
                     </div>
                 </div>
-                {% endif %}
             </div>
         </div>
     </div>
