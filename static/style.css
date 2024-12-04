@@ -1,0 +1,179 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: 'Ma Shan Zheng';
+    src: url('https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap');
+}
+
+body {
+    font-family: 'Ma Shan Zheng', -apple-system, 'SF Pro Display', BlinkMacSystemFont, system-ui, sans-serif;
+    min-height: 100vh;
+    /* 明亮的天青色到浅黄色渐变 */
+    background: linear-gradient(135deg, #88ada6 0%, #f0d695 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #76664d;
+}
+
+.container {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    padding: 2rem;
+}
+
+.love-counter {
+    background: rgba(255, 253, 248, 0.9);
+    padding: 3rem 2rem;
+    border-radius: 12px;
+    /* 柔和的阴影 */
+    box-shadow: 
+        0 4px 24px rgba(118, 102, 77, 0.15),
+        0 2px 8px rgba(118, 102, 77, 0.1);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    /* 明亮的茶色边框 */
+    border: 2px solid #c1a778;
+}
+
+.date-range {
+    font-size: 1.2rem;
+    /* 明亮的茶色 */
+    color: #9d7e5f;
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.separator {
+    /* 深茶色 */
+    color: #76664d;
+}
+
+.heart {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    margin: 0 auto 2rem;
+    animation: pulse 1.5s ease infinite;
+}
+
+.heart::before,
+.heart::after {
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 40px;
+    border-radius: 25px 25px 0 0;
+    /* 明亮的红色渐变 */
+    background: linear-gradient(135deg, #ff8c7c, #e8646d);
+}
+
+.heart::before {
+    left: 25px;
+    transform: rotate(-45deg);
+    transform-origin: 0 100%;
+}
+
+.heart::after {
+    left: 0;
+    transform: rotate(45deg);
+    transform-origin: 100% 100%;
+}
+
+.counter-text {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    /* 暖棕色 */
+    color: #76664d;
+    font-weight: normal;
+}
+
+.days {
+    font-size: 4.5rem;
+    font-weight: normal;
+    /* 明亮的红色渐变 */
+    background: linear-gradient(135deg, #ff8c7c, #e8646d);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 1rem 0;
+    text-shadow: 2px 2px 4px rgba(232, 100, 109, 0.2);
+}
+
+.days-text {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    /* 暖棕色 */
+    color: #76664d;
+    font-weight: normal;
+}
+
+.motto {
+    font-size: 1.6rem;
+    /* 明亮的茶色 */
+    color: #9d7e5f;
+    margin-top: 2rem;
+    font-weight: normal;
+    letter-spacing: 2px;
+}
+
+/* 添加纸张纹理效果 */
+.love-counter::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('data:image/png;base64,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');
+    opacity: 0.03;
+    pointer-events: none;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 1rem;
+    }
+    
+    .love-counter {
+        padding: 2rem 1rem;
+    }
+    
+    .counter-text {
+        font-size: 1.4rem;
+    }
+    
+    .days {
+        font-size: 3rem;
+    }
+    
+    .days-text {
+        font-size: 1.4rem;
+    }
+    
+    .motto {
+        font-size: 1.2rem;
+    }
+    
+    .date-range {
+        font-size: 1rem;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}
