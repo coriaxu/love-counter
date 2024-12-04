@@ -29,10 +29,17 @@ class AnniversaryEffect {
         const beijingOffset = 8 * 60 * 60 * 1000; // 北京时间偏移
         const beijingNow = new Date(now.getTime() + (now.getTimezoneOffset() * 60 * 1000) + beijingOffset);
         
-        // 检查是否在有效期内
-        if (beijingNow >= this.targetDate && beijingNow < this.endDate && !this.isAnniversaryTriggered) {
+        // 严格检查是否是2024年12月10日
+        const isAnniversaryDay = (
+            beijingNow.getFullYear() === 2024 &&
+            beijingNow.getMonth() === 11 && // 11 表示12月
+            beijingNow.getDate() === 10
+        );
+        
+        // 只在15周年当天显示特效
+        if (isAnniversaryDay && !this.isAnniversaryTriggered) {
             this.triggerAnniversaryEffect();
-        } else if (beijingNow >= this.endDate) {
+        } else if (!isAnniversaryDay) {
             this.removeAnniversaryEffect();
         }
     }
