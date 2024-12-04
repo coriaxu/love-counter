@@ -19,15 +19,11 @@ def get_beijing_time():
     """获取北京时间"""
     return datetime.now(BEIJING_TZ)
 
-def is_test_mode():
-    """测试模式：总是返回True以便测试15周年效果"""
-    return True
-
 def is_anniversary_date(current_date):
     """检查是否是15周年纪念日（基于北京时间）"""
-    if is_test_mode():
-        return True
-    return current_date.date() == ANNIVERSARY_DATE.date()
+    return (current_date.year == ANNIVERSARY_DATE.year and 
+            current_date.month == ANNIVERSARY_DATE.month and 
+            current_date.day == ANNIVERSARY_DATE.day)
 
 @app.route('/')
 def index():
@@ -35,7 +31,7 @@ def index():
         # 获取当前北京时间
         current_date = get_beijing_time()
         
-        # 如果是15周年纪念日或测试模式，使用固定日期
+        # 如果是15周年纪念日，使用固定日期
         if is_anniversary_date(current_date):
             display_date = ANNIVERSARY_DATE
         else:
@@ -48,10 +44,15 @@ def index():
         start_date_str = LOVE_START_DATE.strftime("%Y年%m月%d日")
         today_date_str = display_date.strftime("%Y年%m月%d日")
         
+        # 检查是否已过15周年
+        is_after_anniversary = (current_date.date() > ANNIVERSARY_DATE.date())
+        
         return render_template('index.html', 
                             days=days,
                             start_date=start_date_str,
-                            today_date=today_date_str)
+                            today_date=today_date_str,
+                            is_anniversary=is_anniversary_date(current_date),
+                            is_after_anniversary=is_after_anniversary)
                             
     except Exception as e:
         app.logger.error(f"Error in index route: {str(e)}")

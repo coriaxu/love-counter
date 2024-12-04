@@ -4,10 +4,14 @@ class AnniversaryEffect {
         this.daysElement = document.querySelector('.days');
         this.sound = new Audio('/static/chime.mp3');
         this.isAnniversaryTriggered = false;
-        this.targetDate = new Date('2024-12-10T00:00:00+08:00');
+        
+        // 检查是否已过15周年
+        this.isAfterAnniversary = document.body.hasAttribute('data-after-anniversary');
         
         // 初始化
-        this.init();
+        if (!this.isAfterAnniversary) {
+            this.init();
+        }
     }
 
     init() {
@@ -28,12 +32,10 @@ class AnniversaryEffect {
         const beijingOffset = 8 * 60 * 60 * 1000; // 北京时间偏移
         const beijingNow = new Date(now.getTime() + (now.getTimezoneOffset() * 60 * 1000) + beijingOffset);
         
-        // 检查是否是2024年12月10日凌晨
+        // 检查是否是2024年12月10日
         if (beijingNow.getFullYear() === 2024 && 
             beijingNow.getMonth() === 11 && // 11 表示12月
             beijingNow.getDate() === 10 && 
-            beijingNow.getHours() === 0 && 
-            beijingNow.getMinutes() === 0 && 
             !this.isAnniversaryTriggered) {
             
             this.triggerAnniversaryEffect();
@@ -41,6 +43,8 @@ class AnniversaryEffect {
     }
 
     async triggerAnniversaryEffect() {
+        if (this.isAfterAnniversary) return;
+        
         this.isAnniversaryTriggered = true;
         
         // 添加周年样式
