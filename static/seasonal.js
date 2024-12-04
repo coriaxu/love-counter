@@ -5,14 +5,14 @@ class SeasonalTheme {
         this.currentSeason = this.getCurrentSeason();
         this.effectsEnabled = true;
         this.particles = [];
-        this.maxParticles = 30;
+        this.maxParticles = 50; // 增加特效数量
         
         this.setupThemeToggle();
         this.init();
     }
 
     getCurrentSeason() {
-        const month = new Date().getMonth() + 1; // getMonth() returns 0-11
+        const month = new Date().getMonth() + 1;
         if (month >= 3 && month <= 5) return 'spring';
         if (month >= 6 && month <= 8) return 'summer';
         if (month >= 9 && month <= 11) return 'autumn';
@@ -53,7 +53,6 @@ class SeasonalTheme {
         const particle = document.createElement('div');
         particle.className = 'particle';
         
-        // 根据季节设置不同的特效样式
         switch(this.currentSeason) {
             case 'spring':
                 this.createSakura(particle);
@@ -72,55 +71,50 @@ class SeasonalTheme {
         this.container.appendChild(particle);
         this.particles.push(particle);
 
-        // 移除超出视图的粒子
         setTimeout(() => {
             particle.remove();
             this.particles = this.particles.filter(p => p !== particle);
-        }, 10000);
+        }, 15000); // 增加动画持续时间
     }
 
     createSakura(particle) {
+        particle.innerHTML = '🌸';
         particle.style.cssText = `
-            width: 15px;
-            height: 15px;
-            background: pink;
-            border-radius: 15px 0;
-            transform: rotate(${Math.random() * 360}deg);
+            font-size: ${20 + Math.random() * 15}px;
             left: ${Math.random() * 100}vw;
-            animation: sakuraFall 10s linear;
+            animation: sakuraFall ${10 + Math.random() * 5}s linear;
+            opacity: 0.9;
         `;
     }
 
     createSunshine(particle) {
+        particle.innerHTML = '☀️';
         particle.style.cssText = `
-            width: 20px;
-            height: 20px;
-            background: rgba(255, 255, 190, 0.6);
-            border-radius: 50%;
+            font-size: ${25 + Math.random() * 20}px;
             left: ${Math.random() * 100}vw;
-            animation: sunshineFade 8s linear;
+            animation: sunshineFade ${8 + Math.random() * 4}s linear;
+            opacity: 0.8;
         `;
     }
 
     createLeaf(particle) {
+        const leaves = ['🍁', '🍂'];
+        particle.innerHTML = leaves[Math.floor(Math.random() * leaves.length)];
         particle.style.cssText = `
-            width: 15px;
-            height: 15px;
-            background: #d35400;
-            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+            font-size: ${20 + Math.random() * 15}px;
             left: ${Math.random() * 100}vw;
-            animation: leafFall 15s linear;
+            animation: leafFall ${12 + Math.random() * 6}s linear;
+            opacity: 0.9;
         `;
     }
 
     createSnow(particle) {
+        particle.innerHTML = '❄️';
         particle.style.cssText = `
-            width: 8px;
-            height: 8px;
-            background: white;
-            border-radius: 50%;
+            font-size: ${20 + Math.random() * 15}px;
             left: ${Math.random() * 100}vw;
-            animation: snowFall 12s linear;
+            animation: snowFall ${10 + Math.random() * 5}s linear;
+            opacity: 0.9;
         `;
     }
 
@@ -133,12 +127,10 @@ class SeasonalTheme {
             }
         };
 
-        // 每200ms创建一个新粒子
         setInterval(createParticleWithInterval, 200);
     }
 }
 
-// 页面加载完成后初始化季节主题
 document.addEventListener('DOMContentLoaded', () => {
     new SeasonalTheme();
 });

@@ -11,7 +11,7 @@
 
 /* 春季主题 */
 .spring {
-    background: linear-gradient(135deg, #ffd5e5 0%, #ffe3e3 100%);
+    background: linear-gradient(135deg, #ffebf3 0%, #fff5f5 100%);
 }
 
 .spring .heart {
@@ -25,7 +25,7 @@
 
 /* 夏季主题 */
 .summer {
-    background: linear-gradient(135deg, #87CEEB 0%, #98FB98 100%);
+    background: linear-gradient(135deg, #e4f1fe 0%, #e8fae8 100%);
 }
 
 .summer .heart {
@@ -39,21 +39,21 @@
 
 /* 秋季主题 */
 .autumn {
-    background: linear-gradient(135deg, #FAD02C 0%, #FF7518 100%);
+    background: linear-gradient(135deg, #fff3d4 0%, #ffe5d9 100%);
 }
 
 .autumn .heart {
-    background-color: #8B4513;
+    background-color: #d35400;
 }
 
 .autumn .heart::before,
 .autumn .heart::after {
-    background-color: #8B4513;
+    background-color: #d35400;
 }
 
 /* 冬季主题 */
 .winter {
-    background: linear-gradient(135deg, #E3F4F4 0%, #D2E9E9 100%);
+    background: linear-gradient(135deg, #f0f9ff 0%, #e8f4f8 100%);
 }
 
 .winter .heart {
@@ -103,12 +103,13 @@
     position: absolute;
     pointer-events: none;
     z-index: 1;
+    will-change: transform;
 }
 
 /* 动画定义 */
 @keyframes sakuraFall {
     0% {
-        transform: translateY(-10vh) rotate(0deg);
+        transform: translate(0, -10vh) rotate(0deg);
         opacity: 0;
     }
     10% {
@@ -118,29 +119,29 @@
         opacity: 1;
     }
     100% {
-        transform: translateY(100vh) rotate(360deg);
+        transform: translate(20px, 100vh) rotate(720deg);
         opacity: 0;
     }
 }
 
 @keyframes sunshineFade {
     0% {
-        transform: translateY(110vh) scale(1);
+        transform: translate(0, 110vh) scale(0.8);
         opacity: 0;
     }
     50% {
-        opacity: 0.6;
-        transform: translateY(50vh) scale(1.2);
+        opacity: 0.8;
+        transform: translate(10px, 50vh) scale(1.2);
     }
     100% {
-        transform: translateY(-10vh) scale(1);
+        transform: translate(20px, -10vh) scale(0.8);
         opacity: 0;
     }
 }
 
 @keyframes leafFall {
     0% {
-        transform: translateY(-10vh) rotate(0deg);
+        transform: translate(0, -10vh) rotate(0deg);
         opacity: 0;
     }
     10% {
@@ -150,14 +151,14 @@
         opacity: 1;
     }
     100% {
-        transform: translateY(100vh) rotate(720deg);
+        transform: translate(30px, 100vh) rotate(540deg);
         opacity: 0;
     }
 }
 
 @keyframes snowFall {
     0% {
-        transform: translateY(-10vh) translateX(0);
+        transform: translate(0, -10vh) rotate(0deg);
         opacity: 0;
     }
     10% {
@@ -167,7 +168,7 @@
         opacity: 1;
     }
     100% {
-        transform: translateY(100vh) translateX(20px);
+        transform: translate(20px, 100vh) rotate(360deg);
         opacity: 0;
     }
 }
