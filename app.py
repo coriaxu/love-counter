@@ -1,9 +1,11 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, send_from_directory
 from datetime import datetime
 from dateutil import parser
 import os
 
-app = Flask(__name__)
+app = Flask(__name__, 
+            static_folder='static',
+            static_url_path='/static')
 
 # 设置恋爱纪念日
 LOVE_START_DATE = parser.parse("2009-12-10")
@@ -26,6 +28,10 @@ def index():
     except Exception as e:
         app.logger.error(f"Error in index route: {str(e)}")
         return render_template('index.html', error=str(e))
+
+@app.route('/static/<path:path>')
+def serve_static(path):
+    return send_from_directory('static', path)
 
 if __name__ == '__main__':
     # Get port from environment variable or default to 5001
