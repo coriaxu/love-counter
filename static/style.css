@@ -178,7 +178,7 @@ body {
 
 .countdown-glass h2 {
     font-family: 'Ma Shan Zheng', cursive;
-    color: #333;
+    color: #8B7355;
     font-size: 1.5rem;
     margin-bottom: 1rem;
     text-align: center;
@@ -201,14 +201,14 @@ body {
 .countdown-value {
     font-size: 2.5rem;
     font-weight: bold;
-    color: #333;
+    color: #FF6B88;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
 .countdown-label {
     font-size: 1rem;
-    color: #666;
+    color: #A68064;
     margin-top: 0.5rem;
     font-family: 'Ma Shan Zheng', cursive;
 }
