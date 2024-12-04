@@ -4,7 +4,8 @@ class AnniversaryEffect {
         this.daysElement = document.querySelector('.days');
         this.sound = new Audio('/static/chime.mp3');
         this.isAnniversaryTriggered = false;
-        this.anniversaryDate = new Date('2024-12-10T00:00:00+08:00');
+        this.targetDate = new Date('2024-12-10T00:00:00+08:00');
+        this.endDate = new Date('2024-12-11T00:00:00+08:00');
         
         // 初始化
         this.init();
@@ -12,37 +13,28 @@ class AnniversaryEffect {
 
     init() {
         // 测试模式：3秒后触发特效
-        setTimeout(() => this.checkAndTriggerEffect(), 3000);
+        setTimeout(() => this.triggerAnniversaryEffect(), 3000);
         
         /* 正式代码（测试完后取消注释）
-        // 检查是否在目标日期附近
-        this.checkAndTriggerEffect();
+        // 检查是否在目标日期范围内
+        this.checkAnniversary();
         
         // 每秒检查一次
-        setInterval(() => this.checkAndTriggerEffect(), 1000);
+        setInterval(() => this.checkAnniversary(), 1000);
         */
     }
 
-    checkAndTriggerEffect() {
+    checkAnniversary() {
         const now = new Date();
         const beijingOffset = 8 * 60 * 60 * 1000; // 北京时间偏移
         const beijingNow = new Date(now.getTime() + (now.getTimezoneOffset() * 60 * 1000) + beijingOffset);
         
-        // 检查是否是2024年12月10日
-        if (this.isAnniversaryDate(beijingNow)) {
-            if (!this.isAnniversaryTriggered) {
-                this.triggerAnniversaryEffect();
-            }
-        } else if (beijingNow > this.anniversaryDate) {
-            // 如果已经过了纪念日，恢复正常显示
-            this.resetToNormal();
+        // 检查是否在有效期内
+        if (beijingNow >= this.targetDate && beijingNow < this.endDate && !this.isAnniversaryTriggered) {
+            this.triggerAnniversaryEffect();
+        } else if (beijingNow >= this.endDate) {
+            this.removeAnniversaryEffect();
         }
-    }
-
-    isAnniversaryDate(date) {
-        return date.getFullYear() === 2024 && 
-               date.getMonth() === 11 && // 11 表示12月
-               date.getDate() === 10;
     }
 
     async triggerAnniversaryEffect() {
@@ -73,7 +65,7 @@ class AnniversaryEffect {
         }, 800);
     }
 
-    resetToNormal() {
+    removeAnniversaryEffect() {
         // 移除所有特效相关的类
         this.daysElement.classList.remove('anniversary', 'glowing');
         
@@ -83,10 +75,10 @@ class AnniversaryEffect {
             message.remove();
         }
         
-        // 恢复倒计时区域
+        // 恢复原始倒计时区域
         const countdownElement = document.querySelector('.anniversary-countdown');
         if (countdownElement) {
-            countdownElement.innerHTML = '<div class="countdown-text">距离下一个纪念日还有</div>';
+            countdownElement.innerHTML = ''; // 清空内容，让原始倒计时逻辑接管
         }
     }
 

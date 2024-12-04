@@ -13,7 +13,6 @@ BEIJING_TZ = pytz.timezone('Asia/Shanghai')
 
 # 设置恋爱纪念日（北京时间）
 LOVE_START_DATE = datetime(2009, 12, 10, tzinfo=BEIJING_TZ)
-ANNIVERSARY_DATE = datetime(2024, 12, 10, tzinfo=BEIJING_TZ)
 
 def get_beijing_time():
     """获取北京时间"""
@@ -21,9 +20,11 @@ def get_beijing_time():
 
 def is_anniversary_date(current_date):
     """检查是否是15周年纪念日（基于北京时间）"""
-    return (current_date.year == ANNIVERSARY_DATE.year and 
-            current_date.month == ANNIVERSARY_DATE.month and 
-            current_date.day == ANNIVERSARY_DATE.day)
+    anniversary = datetime(2024, 12, 10, tzinfo=BEIJING_TZ)
+    # 只在2024年12月10日当天触发
+    return (current_date.year == 2024 and 
+            current_date.month == 12 and 
+            current_date.day == 10)
 
 @app.route('/')
 def index():
@@ -33,7 +34,7 @@ def index():
         
         # 如果是15周年纪念日，使用固定日期
         if is_anniversary_date(current_date):
-            display_date = ANNIVERSARY_DATE
+            display_date = datetime(2024, 12, 10, tzinfo=BEIJING_TZ)
         else:
             display_date = current_date
         
@@ -44,15 +45,10 @@ def index():
         start_date_str = LOVE_START_DATE.strftime("%Y年%m月%d日")
         today_date_str = display_date.strftime("%Y年%m月%d日")
         
-        # 检查是否已过15周年
-        is_after_anniversary = (current_date.date() > ANNIVERSARY_DATE.date())
-        
         return render_template('index.html', 
                             days=days,
                             start_date=start_date_str,
-                            today_date=today_date_str,
-                            is_anniversary=is_anniversary_date(current_date),
-                            is_after_anniversary=is_after_anniversary)
+                            today_date=today_date_str)
                             
     except Exception as e:
         app.logger.error(f"Error in index route: {str(e)}")
