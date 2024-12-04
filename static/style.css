@@ -4,13 +4,8 @@
     box-sizing: border-box;
 }
 
-@font-face {
-    font-family: 'Ma Shan Zheng';
-    src: url('https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap');
-}
-
 body {
-    font-family: 'Ma Shan Zheng', -apple-system, 'SF Pro Display', BlinkMacSystemFont, system-ui, sans-serif;
+    font-family: -apple-system, 'SF Pro Display', BlinkMacSystemFont, system-ui, sans-serif;
     min-height: 100vh;
     /* 明亮的天青色到浅黄色渐变 */
     background: linear-gradient(135deg, #88ada6 0%, #f0d695 100%);
@@ -58,6 +53,8 @@ body {
 .separator {
     /* 深茶色 */
     color: #76664d;
+    margin: 0 1rem;
+    color: #c1a778;
 }
 
 .heart {
@@ -66,41 +63,38 @@ body {
     height: 50px;
     margin: 0 auto 2rem;
     animation: pulse 1.5s ease infinite;
+    transform: rotate(45deg);
+    background-color: #e8927c;
 }
 
 .heart::before,
 .heart::after {
     content: '';
     position: absolute;
-    width: 25px;
-    height: 40px;
-    border-radius: 25px 25px 0 0;
-    /* 明亮的红色渐变 */
-    background: linear-gradient(135deg, #ff8c7c, #e8646d);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #e8927c;
 }
 
 .heart::before {
-    left: 25px;
-    transform: rotate(-45deg);
-    transform-origin: 0 100%;
+    left: -25px;
 }
 
 .heart::after {
-    left: 0;
-    transform: rotate(45deg);
-    transform-origin: 100% 100%;
+    top: -25px;
 }
 
 .counter-text {
-    font-size: 1.8rem;
-    margin-bottom: 1rem;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
     /* 暖棕色 */
     color: #76664d;
     font-weight: normal;
 }
 
 .days {
-    font-size: 4.5rem;
+    font-size: 4rem;
     font-weight: normal;
     /* 明亮的红色渐变 */
     background: linear-gradient(135deg, #ff8c7c, #e8646d);
@@ -156,7 +150,7 @@ body {
     }
     
     .counter-text {
-        font-size: 1.4rem;
+        font-size: 1.5rem;
     }
     
     .days {
@@ -164,7 +158,7 @@ body {
     }
     
     .days-text {
-        font-size: 1.4rem;
+        font-size: 1.5rem;
     }
     
     .motto {
