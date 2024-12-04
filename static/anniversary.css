@@ -1,81 +1,22 @@
 /* 15周年特效样式 */
-.days.anniversary {
-    position: relative;
-    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-    transform-style: preserve-3d;
+/* 移除之前的特效样式 */
+.days.anniversary,
+.days.anniversary::before,
+.days.anniversary.glowing::before,
+.days.flipping {
+    all: unset;
 }
 
 /* 金色主题 */
+/* 移除之前的主题样式 */
 .days.anniversary {
-    color: #FFD700;
-    text-shadow: 0 0 15px rgba(255, 215, 0, 0.8),
-                 0 0 30px rgba(255, 215, 0, 0.6),
-                 0 0 45px rgba(255, 215, 0, 0.4);
-    font-weight: bold;
-    letter-spacing: 2px;
-}
-
-/* 翻转动画 */
-.days.flipping {
-    transform: rotateX(360deg);
-}
-
-/* 光芒效果 */
-.days.anniversary::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle, rgba(255,215,0,0.3) 0%, rgba(255,215,0,0) 70%);
-    opacity: 0;
-    transition: opacity 0.5s ease;
-    pointer-events: none;
-    animation: none;
-}
-
-.days.anniversary.glowing::before {
-    opacity: 1;
-    animation: pulse 2s ease-in-out infinite;
-}
-
-@keyframes pulse {
-    0% {
-        transform: scale(0.95);
-        opacity: 0.5;
-    }
-    50% {
-        transform: scale(1.05);
-        opacity: 0.8;
-    }
-    100% {
-        transform: scale(0.95);
-        opacity: 0.5;
-    }
-}
-
-/* 周年祝福文字样式 */
-.anniversary-message {
-    font-family: 'Ma Shan Zheng', cursive;
-    color: #FFD700;
-    font-size: 1.8rem;
-    text-align: center;
-    margin-top: 2rem;
-    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
-    opacity: 0;
-    transform: translateY(20px);
-    transition: all 0.8s ease;
-}
-
-.anniversary-message.show {
-    opacity: 1;
-    transform: translateY(0);
+    all: unset;
 }
 
 /* 倒计时整体容器 */
+/* 15周年倒计时样式 */
 .anniversary-countdown {
-    margin-top: 30px;
+    margin-top: 40px;
     text-align: center;
     position: relative;
 }
@@ -90,6 +31,111 @@
     border: 1px solid rgba(255, 255, 255, 0.3);
     position: relative;
     overflow: hidden;
+}
+
+.countdown-glass {
+    position: relative;
+    padding: 30px;
+}
+
+/* 标题样式 */
+.countdown-glass h2 {
+    color: #D4AF37;
+    font-size: 1.4em;
+    margin-bottom: 25px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-family: 'Ma Shan Zheng', cursive;
+}
+
+.countdown-glass h2 {
+    font-size: 1.3em;
+    margin-bottom: 25px;
+    background: linear-gradient(45deg, #D4AF37, #FFD700);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: none;
+}
+
+/* 倒计时数字容器 */
+.countdown-timer {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    position: relative;
+    z-index: 1;
+}
+
+.countdown-timer {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 20px;
+}
+
+/* 每个倒计时项目 */
+.countdown-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.6), rgba(255, 232, 213, 0.3));
+    padding: 15px;
+    border-radius: 15px;
+    min-width: 80px;
+    box-shadow: 0 4px 15px rgba(255, 182, 193, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.countdown-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 60px;
+}
+
+/* 数字样式 */
+.countdown-value {
+    font-size: 2.5em;
+    font-weight: bold;
+    color: #E5B73B;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    font-family: 'Arial', sans-serif;
+    min-width: 1.5em;
+}
+
+.countdown-value {
+    font-size: 3em;
+    font-weight: bold;
+    background: linear-gradient(45deg, #D4AF37, #FFD700);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-family: Arial, sans-serif;
+    text-shadow: none;
+}
+
+/* 标签样式 */
+.countdown-label {
+    font-size: 1em;
+    color: #D4AF37;
+    margin-top: 8px;
+    font-family: 'Ma Shan Zheng', cursive;
+}
+
+.countdown-label {
+    font-size: 1.2em;
+    margin-top: 5px;
+    color: #D4AF37;
+    font-family: 'Ma Shan Zheng', cursive;
+}
+
+/* 移除星星效果 */
+.countdown-glass .star {
+    display: none;
+}
+
+/* 移除花朵装饰 */
+.countdown-glass::before,
+.countdown-glass::after {
+    display: none;
 }
 
 /* 装饰性花朵和叶子 */
@@ -118,55 +164,6 @@
     transform: rotate(135deg);
 }
 
-/* 标题样式 */
-.countdown-glass h2 {
-    color: #D4AF37;
-    font-size: 1.4em;
-    margin-bottom: 25px;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    font-family: 'Ma Shan Zheng', cursive;
-}
-
-/* 倒计时数字容器 */
-.countdown-timer {
-    display: flex;
-    justify-content: center;
-    gap: 25px;
-    position: relative;
-    z-index: 1;
-}
-
-/* 每个倒计时项目 */
-.countdown-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.6), rgba(255, 232, 213, 0.3));
-    padding: 15px;
-    border-radius: 15px;
-    min-width: 80px;
-    box-shadow: 0 4px 15px rgba(255, 182, 193, 0.15);
-    border: 1px solid rgba(255, 255, 255, 0.5);
-}
-
-/* 数字样式 */
-.countdown-value {
-    font-size: 2.5em;
-    font-weight: bold;
-    color: #E5B73B;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    font-family: 'Arial', sans-serif;
-    min-width: 1.5em;
-}
-
-/* 标签样式 */
-.countdown-label {
-    font-size: 1em;
-    color: #D4AF37;
-    margin-top: 8px;
-    font-family: 'Ma Shan Zheng', cursive;
-}
-
 /* 闪烁星星效果 */
 .countdown-glass .star {
     position: absolute;
@@ -187,3 +184,21 @@
 .countdown-glass .star:nth-child(2) { top: 30%; right: 15%; animation-delay: 0.3s; }
 .countdown-glass .star:nth-child(3) { bottom: 25%; left: 20%; animation-delay: 0.6s; }
 .countdown-glass .star:nth-child(4) { bottom: 15%; right: 25%; animation-delay: 0.9s; }
+
+/* 周年祝福文字样式 */
+.anniversary-message {
+    font-family: 'Ma Shan Zheng', cursive;
+    color: #FFD700;
+    font-size: 1.8rem;
+    text-align: center;
+    margin-top: 2rem;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.8s ease;
+}
+
+.anniversary-message.show {
+    opacity: 1;
+    transform: translateY(0);
+}
