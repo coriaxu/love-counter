@@ -1,189 +1,59 @@
 /* 15周年特效样式 */
-/* 移除之前的特效样式 */
-.days.anniversary,
-.days.anniversary::before,
-.days.anniversary.glowing::before,
-.days.flipping {
-    all: unset;
+.days.anniversary {
+    position: relative;
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-style: preserve-3d;
 }
 
 /* 金色主题 */
-/* 移除之前的主题样式 */
 .days.anniversary {
-    all: unset;
-}
-
-/* 倒计时整体容器 */
-/* 15周年倒计时样式 */
-.anniversary-countdown {
-    margin-top: 40px;
-    text-align: center;
-    position: relative;
-}
-
-/* 玻璃效果卡片 */
-.countdown-glass {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.4), rgba(255, 232, 213, 0.2));
-    backdrop-filter: blur(10px);
-    border-radius: 20px;
-    padding: 30px;
-    box-shadow: 0 8px 32px rgba(255, 182, 193, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    position: relative;
-    overflow: hidden;
-}
-
-.countdown-glass {
-    position: relative;
-    padding: 30px;
-}
-
-/* 标题样式 */
-.countdown-glass h2 {
-    color: #D4AF37;
-    font-size: 1.4em;
-    margin-bottom: 25px;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    font-family: 'Ma Shan Zheng', cursive;
-}
-
-.countdown-glass h2 {
-    font-size: 1.3em;
-    margin-bottom: 25px;
-    background: linear-gradient(45deg, #D4AF37, #FFD700);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    text-shadow: none;
-}
-
-/* 倒计时数字容器 */
-.countdown-timer {
-    display: flex;
-    justify-content: center;
-    gap: 25px;
-    position: relative;
-    z-index: 1;
-}
-
-.countdown-timer {
-    display: flex;
-    justify-content: center;
-    gap: 40px;
-    margin-top: 20px;
-}
-
-/* 每个倒计时项目 */
-.countdown-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.6), rgba(255, 232, 213, 0.3));
-    padding: 15px;
-    border-radius: 15px;
-    min-width: 80px;
-    box-shadow: 0 4px 15px rgba(255, 182, 193, 0.15);
-    border: 1px solid rgba(255, 255, 255, 0.5);
-}
-
-.countdown-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-width: 60px;
-}
-
-/* 数字样式 */
-.countdown-value {
-    font-size: 2.5em;
+    color: #FFD700;
+    text-shadow: 0 0 15px rgba(255, 215, 0, 0.8),
+                 0 0 30px rgba(255, 215, 0, 0.6),
+                 0 0 45px rgba(255, 215, 0, 0.4);
     font-weight: bold;
-    color: #E5B73B;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    font-family: 'Arial', sans-serif;
-    min-width: 1.5em;
+    letter-spacing: 2px;
 }
 
-.countdown-value {
-    font-size: 3em;
-    font-weight: bold;
-    background: linear-gradient(45deg, #D4AF37, #FFD700);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-family: Arial, sans-serif;
-    text-shadow: none;
+/* 翻转动画 */
+.days.flipping {
+    transform: rotateX(360deg);
 }
 
-/* 标签样式 */
-.countdown-label {
-    font-size: 1em;
-    color: #D4AF37;
-    margin-top: 8px;
-    font-family: 'Ma Shan Zheng', cursive;
-}
-
-.countdown-label {
-    font-size: 1.2em;
-    margin-top: 5px;
-    color: #D4AF37;
-    font-family: 'Ma Shan Zheng', cursive;
-}
-
-/* 移除星星效果 */
-.countdown-glass .star {
-    display: none;
-}
-
-/* 移除花朵装饰 */
-.countdown-glass::before,
-.countdown-glass::after {
-    display: none;
-}
-
-/* 装饰性花朵和叶子 */
-.countdown-glass::before,
-.countdown-glass::after {
+/* 光芒效果 */
+.days.anniversary::before {
     content: '';
     position: absolute;
-    width: 100px;
-    height: 100px;
-    background-size: contain;
-    background-repeat: no-repeat;
-    opacity: 0.6;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,215,0,0.3) 0%, rgba(255,215,0,0) 70%);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+    animation: none;
 }
 
-.countdown-glass::before {
-    top: -20px;
-    left: -20px;
-    background-image: url('/static/flower-top-left.png');
-    transform: rotate(-45deg);
+.days.anniversary.glowing::before {
+    opacity: 1;
+    animation: pulse 2s ease-in-out infinite;
 }
 
-.countdown-glass::after {
-    bottom: -20px;
-    right: -20px;
-    background-image: url('/static/flower-bottom-right.png');
-    transform: rotate(135deg);
+@keyframes pulse {
+    0% {
+        transform: scale(0.95);
+        opacity: 0.5;
+    }
+    50% {
+        transform: scale(1.05);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(0.95);
+        opacity: 0.5;
+    }
 }
-
-/* 闪烁星星效果 */
-.countdown-glass .star {
-    position: absolute;
-    width: 3px;
-    height: 3px;
-    background: #FFD700;
-    border-radius: 50%;
-    animation: twinkle 1.5s infinite;
-}
-
-@keyframes twinkle {
-    0%, 100% { opacity: 0; }
-    50% { opacity: 1; }
-}
-
-/* 添加多个星星 */
-.countdown-glass .star:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
-.countdown-glass .star:nth-child(2) { top: 30%; right: 15%; animation-delay: 0.3s; }
-.countdown-glass .star:nth-child(3) { bottom: 25%; left: 20%; animation-delay: 0.6s; }
-.countdown-glass .star:nth-child(4) { bottom: 15%; right: 25%; animation-delay: 0.9s; }
 
 /* 周年祝福文字样式 */
 .anniversary-message {
@@ -202,3 +72,119 @@
     opacity: 1;
     transform: translateY(0);
 }
+
+/* 倒计时整体容器 */
+.anniversary-countdown {
+    margin-top: 30px;
+    text-align: center;
+    position: relative;
+}
+
+/* 玻璃效果卡片 */
+.countdown-glass {
+    background: linear-gradient(135deg, rgba(232, 188, 186, 0.3), rgba(255, 235, 205, 0.2));
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 8px 32px rgba(183, 110, 121, 0.2);
+    border: 1px solid rgba(232, 188, 186, 0.4);
+    position: relative;
+    overflow: hidden;
+}
+
+/* 装饰性花朵和叶子 */
+.countdown-glass::before,
+.countdown-glass::after {
+    content: '';
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 0.8;
+}
+
+.countdown-glass::before {
+    top: -20px;
+    left: -20px;
+    background-image: url('/static/flower-top-left.svg');
+    transform: rotate(-45deg);
+}
+
+.countdown-glass::after {
+    bottom: -20px;
+    right: -20px;
+    background-image: url('/static/flower-bottom-right.svg');
+    transform: rotate(135deg);
+}
+
+/* 标题样式 */
+.countdown-glass h2 {
+    color: #B76E79;
+    font-size: 1.4em;
+    margin-bottom: 25px;
+    text-shadow: 1px 1px 2px rgba(183, 110, 121, 0.2);
+    font-family: 'Ma Shan Zheng', cursive;
+}
+
+/* 倒计时数字容器 */
+.countdown-timer {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    position: relative;
+    z-index: 1;
+}
+
+/* 每个倒计时项目 */
+.countdown-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: linear-gradient(135deg, rgba(232, 188, 186, 0.4), rgba(255, 235, 205, 0.3));
+    padding: 15px;
+    border-radius: 15px;
+    min-width: 80px;
+    box-shadow: 0 4px 15px rgba(183, 110, 121, 0.15);
+    border: 1px solid rgba(232, 188, 186, 0.5);
+}
+
+/* 数字样式 */
+.countdown-value {
+    font-size: 2.5em;
+    font-weight: bold;
+    color: #B76E79;
+    text-shadow: 1px 1px 2px rgba(183, 110, 121, 0.2);
+    font-family: 'Arial', sans-serif;
+    min-width: 1.5em;
+}
+
+/* 标签样式 */
+.countdown-label {
+    font-size: 1em;
+    color: #C88691;
+    margin-top: 8px;
+    font-family: 'Ma Shan Zheng', cursive;
+}
+
+/* 闪烁星星效果 */
+.countdown-glass .star {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: rgba(232, 188, 186, 0.8);
+    border-radius: 50%;
+    animation: twinkle 1.5s infinite;
+    box-shadow: 0 0 3px rgba(232, 188, 186, 0.4);
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0.3; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.5); }
+}
+
+/* 添加多个星星 */
+.countdown-glass .star:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
+.countdown-glass .star:nth-child(2) { top: 30%; right: 15%; animation-delay: 0.3s; }
+.countdown-glass .star:nth-child(3) { bottom: 25%; left: 20%; animation-delay: 0.6s; }
+.countdown-glass .star:nth-child(4) { bottom: 15%; right: 25%; animation-delay: 0.9s; }
