@@ -13,15 +13,21 @@ BEIJING_TZ = pytz.timezone('Asia/Shanghai')
 
 # 设置恋爱纪念日（北京时间）
 LOVE_START_DATE = datetime(2009, 12, 10, tzinfo=BEIJING_TZ)
+ANNIVERSARY_DATE = datetime(2024, 12, 10, tzinfo=BEIJING_TZ)
 
 def get_beijing_time():
     """获取北京时间"""
     return datetime.now(BEIJING_TZ)
 
+def is_test_mode():
+    """测试模式：总是返回True以便测试15周年效果"""
+    return True
+
 def is_anniversary_date(current_date):
     """检查是否是15周年纪念日（基于北京时间）"""
-    anniversary = datetime(2024, 12, 10, tzinfo=BEIJING_TZ)
-    return current_date.date() == anniversary.date()
+    if is_test_mode():
+        return True
+    return current_date.date() == ANNIVERSARY_DATE.date()
 
 @app.route('/')
 def index():
@@ -29,9 +35,9 @@ def index():
         # 获取当前北京时间
         current_date = get_beijing_time()
         
-        # 如果是15周年纪念日，使用固定日期
+        # 如果是15周年纪念日或测试模式，使用固定日期
         if is_anniversary_date(current_date):
-            display_date = datetime(2024, 12, 10, tzinfo=BEIJING_TZ)
+            display_date = ANNIVERSARY_DATE
         else:
             display_date = current_date
         
