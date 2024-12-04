@@ -22,8 +22,34 @@
             <div class="days">{{ days }}</div>
             <p class="days-text">天</p>
             <p class="motto">爱你一生一世</p>
+            
+            <!-- 15周年倒计时区块 -->
+            <div class="anniversary-countdown">
+                <div class="countdown-glass">
+                    <h2>距离我们的15周年纪念日还有</h2>
+                    <div class="countdown-timer">
+                        <div class="countdown-item">
+                            <span class="countdown-value" id="countdown-days">--</span>
+                            <span class="countdown-label">天</span>
+                        </div>
+                        <div class="countdown-item">
+                            <span class="countdown-value" id="countdown-hours">--</span>
+                            <span class="countdown-label">时</span>
+                        </div>
+                        <div class="countdown-item">
+                            <span class="countdown-value" id="countdown-minutes">--</span>
+                            <span class="countdown-label">分</span>
+                        </div>
+                        <div class="countdown-item">
+                            <span class="countdown-value" id="countdown-seconds">--</span>
+                            <span class="countdown-label">秒</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <script src="{{ url_for('static', filename='seasonal.js') }}"></script>
+    <script src="{{ url_for('static', filename='countdown.js') }}"></script>
 </body>
 </html>
