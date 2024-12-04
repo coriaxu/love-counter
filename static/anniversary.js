@@ -12,16 +12,16 @@ class AnniversaryEffect {
     }
 
     init() {
-        // 测试模式：3秒后触发特效
+        /* 测试模式（暂时注释掉）
         setTimeout(() => this.triggerAnniversaryEffect(), 3000);
+        */
         
-        /* 正式代码（测试完后取消注释）
+        // 正式代码
         // 检查是否在目标日期范围内
         this.checkAnniversary();
         
         // 每秒检查一次
         setInterval(() => this.checkAnniversary(), 1000);
-        */
     }
 
     checkAnniversary() {
