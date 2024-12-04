@@ -58,8 +58,8 @@ class AnniversaryEffect {
         // 更新数字
         setTimeout(() => {
             this.daysElement.textContent = '5478';
-            this.createParticles();
             this.daysElement.classList.add('glowing');
+            this.showAnniversaryMessage();
         }, 400);
         
         // 动画结束后移除翻转类
@@ -68,44 +68,14 @@ class AnniversaryEffect {
         }, 800);
     }
 
-    createParticles() {
-        const particleCount = 20;
-        const container = document.querySelector('.love-counter');
-        
-        for (let i = 0; i < particleCount; i++) {
-            const particle = document.createElement('div');
-            particle.className = 'particle';
-            container.appendChild(particle);
-            
-            const size = Math.random() * 8 + 4;
-            const angle = (Math.random() * 360) * (Math.PI / 180);
-            const velocity = Math.random() * 100 + 50;
-            const startX = this.daysElement.offsetLeft + this.daysElement.offsetWidth / 2;
-            const startY = this.daysElement.offsetTop + this.daysElement.offsetHeight / 2;
-            
-            particle.style.width = size + 'px';
-            particle.style.height = size + 'px';
-            particle.style.left = startX + 'px';
-            particle.style.top = startY + 'px';
-            
-            // 设置动画
-            particle.animate([
-                {
-                    transform: `translate(0, 0) scale(1)`,
-                    opacity: 1
-                },
-                {
-                    transform: `translate(${Math.cos(angle) * velocity}px, ${Math.sin(angle) * velocity}px) scale(0)`,
-                    opacity: 0
-                }
-            ], {
-                duration: 1000,
-                easing: 'cubic-bezier(0.4, 0, 0.2, 1)',
-                fill: 'forwards'
-            });
-            
-            // 动画结束后移除粒子
-            setTimeout(() => particle.remove(), 1000);
+    showAnniversaryMessage() {
+        // 移除倒计时区块
+        const countdownElement = document.querySelector('.anniversary-countdown');
+        if (countdownElement) {
+            countdownElement.innerHTML = '<div class="anniversary-message">恋爱 15 周年快乐！</div>';
+            setTimeout(() => {
+                document.querySelector('.anniversary-message').classList.add('show');
+            }, 100);
         }
     }
 

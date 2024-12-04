@@ -8,7 +8,11 @@
 /* 金色主题 */
 .days.anniversary {
     color: #FFD700;
-    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    text-shadow: 0 0 15px rgba(255, 215, 0, 0.8),
+                 0 0 30px rgba(255, 215, 0, 0.6),
+                 0 0 45px rgba(255, 215, 0, 0.4);
+    font-weight: bold;
+    letter-spacing: 2px;
 }
 
 /* 翻转动画 */
@@ -24,7 +28,7 @@
     left: -50%;
     width: 200%;
     height: 200%;
-    background: radial-gradient(circle, rgba(255,215,0,0.2) 0%, rgba(255,215,0,0) 70%);
+    background: radial-gradient(circle, rgba(255,215,0,0.3) 0%, rgba(255,215,0,0) 70%);
     opacity: 0;
     transition: opacity 0.5s ease;
     pointer-events: none;
@@ -51,11 +55,20 @@
     }
 }
 
-/* 粒子效果 */
-.particle {
-    position: absolute;
-    pointer-events: none;
-    background: #FFD700;
-    border-radius: 50%;
+/* 周年祝福文字样式 */
+.anniversary-message {
+    font-family: 'Ma Shan Zheng', cursive;
+    color: #FFD700;
+    font-size: 1.8rem;
+    text-align: center;
+    margin-top: 2rem;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
     opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.8s ease;
+}
+
+.anniversary-message.show {
+    opacity: 1;
+    transform: translateY(0);
 }
