@@ -1,0 +1,61 @@
+/* 15周年特效样式 */
+.days.anniversary {
+    position: relative;
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-style: preserve-3d;
+}
+
+/* 金色主题 */
+.days.anniversary {
+    color: #FFD700;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+/* 翻转动画 */
+.days.flipping {
+    transform: rotateX(360deg);
+}
+
+/* 光芒效果 */
+.days.anniversary::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,215,0,0.2) 0%, rgba(255,215,0,0) 70%);
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+    animation: none;
+}
+
+.days.anniversary.glowing::before {
+    opacity: 1;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(0.95);
+        opacity: 0.5;
+    }
+    50% {
+        transform: scale(1.05);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(0.95);
+        opacity: 0.5;
+    }
+}
+
+/* 粒子效果 */
+.particle {
+    position: absolute;
+    pointer-events: none;
+    background: #FFD700;
+    border-radius: 50%;
+    opacity: 0;
+}
