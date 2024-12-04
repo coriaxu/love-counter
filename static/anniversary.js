@@ -6,17 +6,16 @@ class AnniversaryEffect {
         this.isAnniversaryTriggered = false;
         this.targetDate = new Date('2024-12-10T00:00:00+08:00');
         this.endDate = new Date('2024-12-11T00:00:00+08:00');
+        this.countdownInterval = null;
         
         // 初始化
         this.init();
     }
 
     init() {
-        /* 测试模式（暂时注释掉）
-        setTimeout(() => this.triggerAnniversaryEffect(), 3000);
-        */
+        // 初始化倒计时
+        this.startCountdown();
         
-        // 正式代码
         // 检查是否在目标日期范围内
         this.checkAnniversary();
         
@@ -113,14 +112,18 @@ class AnniversaryEffect {
     }
 
     startCountdown() {
-        const targetDate = new Date('2024-12-10T00:00:00+08:00');
-        
+        // 清除之前的计时器
+        if (this.countdownInterval) {
+            clearInterval(this.countdownInterval);
+        }
+
+        // 更新倒计时显示
         const updateCountdown = () => {
             const now = new Date();
             const beijingOffset = 8 * 60 * 60 * 1000;
             const beijingNow = new Date(now.getTime() + (now.getTimezoneOffset() * 60 * 1000) + beijingOffset);
             
-            const timeLeft = targetDate - beijingNow;
+            const timeLeft = this.targetDate - beijingNow;
             
             if (timeLeft <= 0) {
                 document.getElementById('countdown-days').textContent = '0';
@@ -135,17 +138,22 @@ class AnniversaryEffect {
             const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
             
-            document.getElementById('countdown-days').textContent = days;
-            document.getElementById('countdown-hours').textContent = hours;
-            document.getElementById('countdown-minutes').textContent = minutes;
-            document.getElementById('countdown-seconds').textContent = seconds;
+            const countdownDays = document.getElementById('countdown-days');
+            const countdownHours = document.getElementById('countdown-hours');
+            const countdownMinutes = document.getElementById('countdown-minutes');
+            const countdownSeconds = document.getElementById('countdown-seconds');
+            
+            if (countdownDays) countdownDays.textContent = days;
+            if (countdownHours) countdownHours.textContent = hours;
+            if (countdownMinutes) countdownMinutes.textContent = minutes;
+            if (countdownSeconds) countdownSeconds.textContent = seconds;
         };
         
         // 立即更新一次
         updateCountdown();
         
         // 每秒更新一次
-        setInterval(updateCountdown, 1000);
+        this.countdownInterval = setInterval(updateCountdown, 1000);
     }
 
     showAnniversaryMessage() {
