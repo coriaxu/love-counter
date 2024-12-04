@@ -4,47 +4,48 @@ class AnniversaryEffect {
         this.daysElement = document.querySelector('.days');
         this.sound = new Audio('/static/chime.mp3');
         this.isAnniversaryTriggered = false;
-        
-        // 检查是否已过15周年
-        this.isAfterAnniversary = document.body.hasAttribute('data-after-anniversary');
+        this.anniversaryDate = new Date('2024-12-10T00:00:00+08:00');
         
         // 初始化
-        if (!this.isAfterAnniversary) {
-            this.init();
-        }
+        this.init();
     }
 
     init() {
         // 测试模式：3秒后触发特效
-        setTimeout(() => this.triggerAnniversaryEffect(), 3000);
+        setTimeout(() => this.checkAndTriggerEffect(), 3000);
         
         /* 正式代码（测试完后取消注释）
         // 检查是否在目标日期附近
-        this.checkAnniversary();
+        this.checkAndTriggerEffect();
         
         // 每秒检查一次
-        setInterval(() => this.checkAnniversary(), 1000);
+        setInterval(() => this.checkAndTriggerEffect(), 1000);
         */
     }
 
-    checkAnniversary() {
+    checkAndTriggerEffect() {
         const now = new Date();
         const beijingOffset = 8 * 60 * 60 * 1000; // 北京时间偏移
         const beijingNow = new Date(now.getTime() + (now.getTimezoneOffset() * 60 * 1000) + beijingOffset);
         
         // 检查是否是2024年12月10日
-        if (beijingNow.getFullYear() === 2024 && 
-            beijingNow.getMonth() === 11 && // 11 表示12月
-            beijingNow.getDate() === 10 && 
-            !this.isAnniversaryTriggered) {
-            
-            this.triggerAnniversaryEffect();
+        if (this.isAnniversaryDate(beijingNow)) {
+            if (!this.isAnniversaryTriggered) {
+                this.triggerAnniversaryEffect();
+            }
+        } else if (beijingNow > this.anniversaryDate) {
+            // 如果已经过了纪念日，恢复正常显示
+            this.resetToNormal();
         }
     }
 
+    isAnniversaryDate(date) {
+        return date.getFullYear() === 2024 && 
+               date.getMonth() === 11 && // 11 表示12月
+               date.getDate() === 10;
+    }
+
     async triggerAnniversaryEffect() {
-        if (this.isAfterAnniversary) return;
-        
         this.isAnniversaryTriggered = true;
         
         // 添加周年样式
@@ -70,6 +71,23 @@ class AnniversaryEffect {
         setTimeout(() => {
             this.daysElement.classList.remove('flipping');
         }, 800);
+    }
+
+    resetToNormal() {
+        // 移除所有特效相关的类
+        this.daysElement.classList.remove('anniversary', 'glowing');
+        
+        // 移除祝福消息
+        const message = document.querySelector('.anniversary-message');
+        if (message) {
+            message.remove();
+        }
+        
+        // 恢复倒计时区域
+        const countdownElement = document.querySelector('.anniversary-countdown');
+        if (countdownElement) {
+            countdownElement.innerHTML = '<div class="countdown-text">距离下一个纪念日还有</div>';
+        }
     }
 
     showAnniversaryMessage() {
