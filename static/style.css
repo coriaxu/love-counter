@@ -1,17 +1,17 @@
 /* 全局变量定义 */
 :root {
     /* 颜色变量 */
-    --color-bg-start: #fce4ec; /* 浅粉色 */
-    --color-bg-end: #f8bbd0;   /* 浅紫色 */
-    --color-text-primary: #4a148c; /* 深紫色 */
-    --color-text-secondary: #880e4f; /* 深粉色 */
-    --color-accent: #ff80ab; /* 粉红色 */
-    --color-heart-gradient-start: #ff5f6d; /* 渐变起始颜色 */
-    --color-heart-gradient-end: #ffc371; /* 渐变结束颜色 */
-    --color-card-bg: rgba(255, 255, 255, 0.4);
+    --color-bg-start: #f0f0f5; /* 浅灰蓝色 */
+    --color-bg-end: #ffffff;   /* 白色 */
+    --color-text-primary: #2c3e50; /* 深蓝灰色 */
+    --color-text-secondary: #7f8c8d; /* 灰色 */
+    --color-accent: #3498db; /* 天空蓝 */
+    --color-heart-gradient-start: #e74c3c; /* 心形渐变起始颜色 */
+    --color-heart-gradient-end: #c0392b; /* 心形渐变结束颜色 */
+    --color-card-bg: rgba(255, 255, 255, 0.85);
     /* 尺寸变量 */
     --font-size-large: 2rem;
-    --font-size-medium: 1.5rem;
+    --font-size-medium: 1.2rem;
     --font-size-small: 1rem;
 }
 
@@ -24,7 +24,7 @@
 
 /* 页面主体样式 */
 body {
-    font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     min-height: 100vh;
     background: linear-gradient(135deg, var(--color-bg-start) 0%, var(--color-bg-end) 100%);
     display: flex;
@@ -33,18 +33,19 @@ body {
     color: var(--color-text-primary);
 }
 
+/* 容器样式 */
 .container {
     position: relative;
     width: 100%;
-    max-width: 800px;
+    max-width: 600px;
     padding: 2rem;
 }
 
 /* 爱情计数器样式 */
 .love-counter {
     background: var(--color-card-bg);
-    padding: 3rem 2rem;
-    border-radius: 20px;
+    padding: 2rem 1.5rem;
+    border-radius: 12px;
     box-shadow:
         0 4px 24px rgba(0, 0, 0, 0.1),
         0 2px 8px rgba(0, 0, 0, 0.05);
@@ -52,12 +53,12 @@ body {
     position: relative;
     overflow: hidden;
     backdrop-filter: blur(10px);
-    border: 2px solid var(--color-accent);
+    border: 1px solid rgba(0, 0, 0, 0.05);
     transition: all 0.3s ease;
 }
 
 .love-counter:hover {
-    transform: translateY(-5px);
+    transform: translateY(-3px);
     box-shadow:
         0 6px 30px rgba(0, 0, 0, 0.15),
         0 4px 12px rgba(0, 0, 0, 0.1);
@@ -67,24 +68,24 @@ body {
 .date-range {
     font-size: var(--font-size-medium);
     color: var(--color-text-secondary);
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 1rem;
+    gap: 0.5rem;
 }
 
 .separator {
     color: var(--color-accent);
-    margin: 0 1rem;
+    margin: 0 0.5rem;
 }
 
 /* 心形图案样式 */
 .heart {
     position: relative;
-    width: 120px;
-    height: 120px;
-    margin: 30px auto;
+    width: 60px;
+    height: 60px;
+    margin: 20px auto;
     background: linear-gradient(135deg, var(--color-heart-gradient-start), var(--color-heart-gradient-end));
     transform: rotate(-45deg);
     transition: transform 0.3s ease;
@@ -98,20 +99,20 @@ body {
 .heart::after {
     content: "";
     position: absolute;
-    width: 120px;
-    height: 120px;
+    width: 60px;
+    height: 60px;
     background: linear-gradient(135deg, var(--color-heart-gradient-start), var(--color-heart-gradient-end));
     border-radius: 50%;
 }
 
 .heart::before {
-    top: -60px;
+    top: -30px;
     left: 0;
 }
 
 .heart::after {
     top: 0;
-    left: 60px;
+    left: 30px;
 }
 
 /* 心跳动画 */
@@ -140,130 +141,58 @@ body {
 /* 主要文本样式 */
 .text-primary {
     font-size: var(--font-size-large);
-    color: var(--color-text-secondary);
-    font-weight: normal;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
-    margin-bottom: 1.5rem;
+    color: var(--color-text-primary);
+    font-weight: 600;
+    margin-bottom: 1rem;
 }
 
 .counter-text,
 .days-text {
-    font-size: var(--font-size-large);
+    font-size: var(--font-size-medium);
     color: var(--color-text-secondary);
-    margin-bottom: 1.5rem;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1rem;
 }
 
 /* 天数显示样式 */
 .days {
-    font-size: 4rem;
-    font-weight: normal;
-    background: linear-gradient(135deg, #ff4081, #f50057);
+    font-size: 3.5rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--color-accent), var(--color-accent));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     margin: 1rem 0;
-    text-shadow: 2px 2px 4px rgba(245, 0, 87, 0.2);
 }
 
 /* 座右铭样式 */
 .motto {
-    font-size: 1.6rem;
+    font-size: var(--font-size-small);
     color: var(--color-text-secondary);
-    margin-top: 2rem;
-    font-weight: normal;
-    letter-spacing: 2px;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    margin-top: 1.5rem;
+    font-weight: 400;
+    letter-spacing: 1px;
 }
 
-/* 添加纸张纹理效果 */
+/* 添加细节装饰 */
+.love-counter::after {
+    content: '';
+    position: absolute;
+    top: -60px;
+    left: -60px;
+    width: 180px;
+    height: 180px;
+    background: radial-gradient(circle, rgba(52, 152, 219, 0.15) 0%, transparent 70%);
+    z-index: -1;
+}
+
 .love-counter::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-image: url('data:image/png;base64,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');
-    opacity: 0.03;
-    pointer-events: none;
-}
-
-/* 15周年倒计时样式 */
-.anniversary-countdown {
-    margin-top: 2rem;
-    padding: 1rem;
-}
-
-.countdown-glass {
-    background: var(--color-card-bg);
-    backdrop-filter: blur(10px);
-    border-radius: 20px;
-    padding: 1.5rem;
-    box-shadow:
-        0 8px 32px rgba(0, 0, 0, 0.1),
-        0 4px 16px rgba(0, 0, 0, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    transition: all 0.3s ease;
-}
-
-.countdown-glass:hover {
-    transform: translateY(-2px);
-    box-shadow:
-        0 10px 40px rgba(0, 0, 0, 0.15),
-        0 6px 20px rgba(0, 0, 0, 0.1);
-}
-
-.countdown-glass h2 {
-    font-family: 'Poppins', cursive;
-    color: var(--color-text-primary);
-    font-size: var(--font-size-medium);
-    margin-bottom: 1rem;
-    text-align: center;
-}
-
-.countdown-timer {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    margin-top: 1rem;
-}
-
-.countdown-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-width: 80px;
-}
-
-.countdown-value {
-    font-size: 2.5rem;
-    font-weight: bold;
-    color: var(--color-heart-gradient-start);
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.countdown-label {
-    font-size: var(--font-size-small);
-    color: var(--color-text-secondary);
-    margin-top: 0.5rem;
-    font-family: 'Poppins', cursive;
-}
-
-/* 数字变化动画 */
-@keyframes countdownPulse {
-    0% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.1);
-    }
-    100% {
-        transform: scale(1);
-    }
-}
-
-.countdown-value.updating {
-    animation: countdownPulse 0.3s ease-in-out;
+    bottom: -60px;
+    right: -60px;
+    width: 180px;
+    height: 180px;
+    background: radial-gradient(circle, rgba(52, 152, 219, 0.15) 0%, transparent 70%);
+    z-index: -1;
 }
 
 /* 响应式设计 */
@@ -272,21 +201,36 @@ body {
         padding: 1rem;
     }
     .love-counter {
-        padding: 2rem 1rem;
+        padding: 1.5rem 1rem;
     }
     .counter-text,
     .days-text {
-        font-size: 1.5rem;
+        font-size: 1rem;
     }
     .days {
-        font-size: 3rem;
+        font-size: 2.5rem;
     }
     .motto {
-        font-size: 1.2rem;
+        font-size: 0.9rem;
     }
     .date-range {
-        font-size: 1rem;
+        font-size: 0.9rem;
         flex-direction: column;
-        gap: 0.5rem;
+        gap: 0.3rem;
+    }
+    .heart {
+        width: 50px;
+        height: 50px;
+    }
+    .heart::before,
+    .heart::after {
+        width: 50px;
+        height: 50px;
+    }
+    .heart::before {
+        top: -25px;
+    }
+    .heart::after {
+        left: 25px;
     }
 }
