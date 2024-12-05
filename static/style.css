@@ -59,7 +59,7 @@ body {
     background: var(--color-card-bg);
     padding: 1.5rem;
     border-radius: 20px;
-    box-shadow:
+    box-shadow: 
         0 4px 24px rgba(0, 0, 0, 0.1),
         0 2px 8px rgba(0, 0, 0, 0.05);
     text-align: center;
@@ -171,7 +171,7 @@ body {
     background: var(--color-countdown-bg);
     padding: 1.5rem;
     border-radius: 20px;
-    box-shadow:
+    box-shadow: 
         0 4px 24px rgba(0, 0, 0, 0.1),
         0 2px 8px rgba(0, 0, 0, 0.05);
     position: relative;
@@ -182,7 +182,7 @@ body {
 
 .countdown-card:hover {
     transform: translateY(-3px);
-    box-shadow:
+    box-shadow: 
         0 6px 30px rgba(0, 0, 0, 0.15),
         0 4px 12px rgba(0, 0, 0, 0.1);
 }
