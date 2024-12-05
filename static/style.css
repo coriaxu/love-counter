@@ -62,7 +62,7 @@ body {
     width: 100px;
     height: 100px;
     margin: 30px auto;
-    background: url('../static/heart.svg') no-repeat center center;
+    background: url('heart.svg') no-repeat center center;
     background-size: contain;
     animation: heartbeat 1.4s ease-in-out infinite;
     transform: none;
