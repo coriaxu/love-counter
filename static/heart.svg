@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+    <!-- 定义渐变 -->
+    <defs>
+        <!-- 主渐变 -->
+        <linearGradient id="heartGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#ff1e1e"/>
+            <stop offset="100%" style="stop-color:#cc0000"/>
+        </linearGradient>
+        <!-- 高光渐变 -->
+        <linearGradient id="shineGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:rgba(255,255,255,0.3)"/>
+            <stop offset="100%" style="stop-color:rgba(255,255,255,0)"/>
+        </linearGradient>
+    </defs>
+    
+    <!-- 阴影层 -->
+    <path d="M100 180c-50-38-82-63-82-94 0-19 16-35 35-35 16 0 32 10 39 24h16c7-14 23-24 39-24 19 0 35 16 35 35 0 31-32 56-82 94z"
+          fill="#00000020"
+          transform="translate(4,4)"/>
+          
+    <!-- 主心形 -->
+    <path d="M100 180c-50-38-82-63-82-94 0-19 16-35 35-35 16 0 32 10 39 24h16c7-14 23-24 39-24 19 0 35 16 35 35 0 31-32 56-82 94z"
+          fill="url(#heartGradient)"
+          stroke="#990000"
+          stroke-width="2"/>
+          
+    <!-- 高光效果 -->
+    <path d="M100 180c-50-38-82-63-82-94 0-19 16-35 35-35 16 0 32 10 39 24h16c7-14 23-24 39-24 19 0 35 16 35 35 0 31-32 56-82 94z"
+          fill="url(#shineGradient)"/>
+</svg>
