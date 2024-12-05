@@ -1,7 +1,7 @@
 /* 引入庞门正道标题体 */
 @font-face {
     font-family: 'PangMenZhengDao';
-    src: url('fonts/PangMenZhengDao.ttf') format('truetype');
+    src: url('../fonts/PangMenZhengDao.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
@@ -59,7 +59,7 @@ body {
     background: var(--color-card-bg);
     padding: 1.5rem;
     border-radius: 20px;
-    box-shadow: 
+    box-shadow:
         0 4px 24px rgba(0, 0, 0, 0.1),
         0 2px 8px rgba(0, 0, 0, 0.05);
     text-align: center;
@@ -79,33 +79,33 @@ body {
 }
 
 .title .heart {
-    width: 30px; /* 缩小心形尺寸 */
-    height: 30px;
+    width: 15px; /* 缩小心形尺寸至原来的50% */
+    height: 15px;
     margin-right: 0.5rem;
-    background: linear-gradient(135deg, var(--color-heart-gradient-start), var(--color-heart-gradient-end));
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4); /* 粉紫渐变 */
     transform: rotate(-45deg);
     position: relative;
-    border-radius: 15px;
+    border-radius: 7.5px;
 }
 
 .title .heart::before,
 .title .heart::after {
     content: "";
     position: absolute;
-    width: 30px;
-    height: 30px;
+    width: 15px;
+    height: 15px;
     background: inherit;
     border-radius: 50%;
 }
 
 .title .heart::before {
-    top: -15px;
+    top: -7.5px;
     left: 0;
 }
 
 .title .heart::after {
     top: 0;
-    left: 15px;
+    left: 7.5px;
 }
 
 /* 主标题样式 */
@@ -122,7 +122,7 @@ body {
 .date-range {
     font-size: var(--font-size-medium);
     color: var(--color-text-secondary);
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -137,7 +137,7 @@ body {
 .counter-text {
     font-size: var(--font-size-medium);
     color: var(--color-text-primary);
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
     font-family: 'Ma Shan Zheng', 'Microsoft YaHei', sans-serif;
 }
 
@@ -149,7 +149,7 @@ body {
     background: linear-gradient(135deg, var(--color-days-gradient-start), var(--color-days-gradient-end));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
     text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
 }
 
@@ -171,7 +171,7 @@ body {
     background: var(--color-countdown-bg);
     padding: 1.5rem;
     border-radius: 20px;
-    box-shadow: 
+    box-shadow:
         0 4px 24px rgba(0, 0, 0, 0.1),
         0 2px 8px rgba(0, 0, 0, 0.05);
     position: relative;
@@ -182,7 +182,7 @@ body {
 
 .countdown-card:hover {
     transform: translateY(-3px);
-    box-shadow: 
+    box-shadow:
         0 6px 30px rgba(0, 0, 0, 0.15),
         0 4px 12px rgba(0, 0, 0, 0.1);
 }
@@ -212,7 +212,7 @@ body {
     font-size: 2.5rem;
     font-weight: bold;
     color: var(--color-text-primary);
-    background: linear-gradient(135deg, #d8b4e2, #fbc2eb); /* 增加渐变效果 */
+    background: linear-gradient(135deg, var(--color-days-gradient-start), var(--color-days-gradient-end)); /* 增加渐变效果 */
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);

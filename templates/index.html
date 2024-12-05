@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <title>我们的纪念日</title>
     <!-- 引用CSS文件 -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     <!-- 引用字体 -->
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
+    <!-- 如果使用Google Fonts中的替代字体，请取消以下链接的注释 -->
+    <!-- <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Ma+Shan+Zheng&display=swap" rel="stylesheet"> -->
 </head>
 <body>
     <div class="container">
@@ -56,6 +57,6 @@
         </div>
     </div>
     <!-- 引用JavaScript文件 -->
-    <script src="script.js"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
 </body>
 </html>
