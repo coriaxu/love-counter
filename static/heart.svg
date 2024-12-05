@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" style="background: transparent;">
     <defs>
-        <!-- 主渐变 - 更柔和的红色 -->
+        <!-- 主渐变 - 柔和的红色 -->
         <linearGradient id="heartGradient" x1="0%" y1="0%" x2="100%" y2="100%">
             <stop offset="0%" style="stop-color:#ff6b6b"/>
             <stop offset="50%" style="stop-color:#ff4141"/>
             <stop offset="100%" style="stop-color:#ff2020"/>
         </linearGradient>
         
-        <!-- 高光渐变 - 更细腻的光效 -->
+        <!-- 高光渐变 -->
         <linearGradient id="shineGradient" x1="0%" y1="0%" x2="100%" y2="100%">
             <stop offset="0%" style="stop-color:rgba(255,255,255,0.4)"/>
             <stop offset="50%" style="stop-color:rgba(255,255,255,0.1)"/>
             <stop offset="100%" style="stop-color:rgba(255,255,255,0)"/>
         </linearGradient>
         
-        <!-- 内阴影滤镜 -->
+        <!-- 内阴影 -->
         <filter id="innerShadow">
             <feOffset dx="0" dy="2"/>
             <feGaussianBlur stdDeviation="3"/>
@@ -27,26 +27,26 @@
         </filter>
     </defs>
     
-    <!-- 更柔和的心形路径 -->
-    <path d="M100 170 
-             C 60 120 0 90 0 45 
-             C 0 20 20 0 45 0 
-             C 70 0 90 20 100 45 
-             C 110 20 130 0 155 0 
-             C 180 0 200 20 200 45 
-             C 200 90 140 120 100 170Z" 
-          transform="translate(0, 15) scale(0.9)"
-          fill="url(#heartGradient)"
-          filter="url(#innerShadow)"/>
-    
-    <!-- 高光效果 -->
-    <path d="M100 170 
-             C 60 120 0 90 0 45 
-             C 0 20 20 0 45 0 
-             C 70 0 90 20 100 45 
-             C 110 20 130 0 155 0 
-             C 180 0 200 20 200 45 
-             C 200 90 140 120 100 170Z"
-          transform="translate(0, 15) scale(0.9)"
-          fill="url(#shineGradient)"/>
+    <!-- 心形 -->
+    <g transform="translate(20, 30) scale(0.8)">
+        <path d="M100 170 
+                 C 60 120 0 90 0 45 
+                 C 0 20 20 0 45 0 
+                 C 70 0 90 20 100 45 
+                 C 110 20 130 0 155 0 
+                 C 180 0 200 20 200 45 
+                 C 200 90 140 120 100 170Z" 
+              fill="url(#heartGradient)"
+              filter="url(#innerShadow)"/>
+        
+        <!-- 高光层 -->
+        <path d="M100 170 
+                 C 60 120 0 90 0 45 
+                 C 0 20 20 0 45 0 
+                 C 70 0 90 20 100 45 
+                 C 110 20 130 0 155 0 
+                 C 180 0 200 20 200 45 
+                 C 200 90 140 120 100 170Z"
+              fill="url(#shineGradient)"/>
+    </g>
 </svg>
