@@ -59,49 +59,32 @@ body {
 
 .heart {
     position: relative;
-    width: 30px;
-    height: 30px;
+    width: 100px;
+    height: 100px;
     margin: 30px auto;
-    background-color: #e8646d;
-    transform: rotate(-45deg);
+    background: url('../static/heart.svg') no-repeat center center;
+    background-size: contain;
     animation: heartbeat 1.4s ease-in-out infinite;
+    transform: none;
 }
 
 .heart::before,
 .heart::after {
-    content: '';
-    position: absolute;
-    width: 30px;
-    height: 30px;
-    background-color: #e8646d;
-    border-radius: 50%;
-}
-
-.heart::before {
-    top: -15px;
-    left: 0;
-}
-
-.heart::after {
-    top: 0;
-    left: 15px;
+    display: none;
 }
 
 @keyframes heartbeat {
     0% {
-        transform: rotate(-45deg) scale(1);
+        transform: scale(1);
     }
     14% {
-        transform: rotate(-45deg) scale(1.1);
+        transform: scale(1.1);
     }
     28% {
-        transform: rotate(-45deg) scale(1);
+        transform: scale(1);
     }
     42% {
-        transform: rotate(-45deg) scale(1.1);
-    }
-    70% {
-        transform: rotate(-45deg) scale(1);
+        transform: scale(1.1);
     }
 }
 
