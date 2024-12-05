@@ -2,11 +2,19 @@ from flask import Flask, render_template, send_from_directory
 from datetime import datetime
 import pytz
 import os
+import logging
+
+# 配置日志
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 app = Flask(__name__, 
             static_folder='static',
             static_url_path='/static',
             template_folder='templates')
+
+# 开启调试模式
+app.debug = True
 
 # 北京时区
 BEIJING_TZ = pytz.timezone('Asia/Shanghai')
@@ -28,9 +36,11 @@ def is_anniversary_date(current_date):
 
 @app.route('/')
 def index():
+    """主页路由"""
     try:
         # 获取当前北京时间
         current_date = get_beijing_time()
+        logger.info(f'访问主页 - 当前北京时间: {current_date}')
         
         # 如果是15周年纪念日，使用固定日期
         if is_anniversary_date(current_date):
@@ -51,12 +61,21 @@ def index():
                             today_date=today_date_str)
                             
     except Exception as e:
-        app.logger.error(f"Error in index route: {str(e)}")
+        logger.error(f"Error in index route: {str(e)}")
         return str(e), 500
 
 @app.route('/static/<path:filename>')
 def serve_static(filename):
-    return send_from_directory(app.static_folder, filename)
+    """静态文件路由"""
+    logger.info(f'请求静态文件: {filename}')
+    return send_from_directory('static', filename)
 
 if __name__ == '__main__':
-    app.run(debug=True, port=4000)
+    # 确保static文件夹存在
+    if not os.path.exists('static'):
+        os.makedirs('static')
+        logger.warning(f'创建static文件夹: static')
+    
+    port = int(os.environ.get('PORT', 4000))
+    logger.info(f'启动服务器 - 静态文件目录: static')
+    app.run(host='0.0.0.0', port=port, debug=True)
