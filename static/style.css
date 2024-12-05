@@ -59,10 +59,10 @@ body {
 
 .heart {
     position: relative;
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
     margin: 30px auto;
-    background: url('heart.svg') no-repeat center center;
+    background: url('images/red-heart.png') no-repeat center center;
     background-size: contain;
     animation: heartbeat 1.4s ease-in-out infinite;
     transform: none;
