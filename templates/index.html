@@ -1,57 +1,61 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>我们的爱情计时器</title>
-    <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='seasonal.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='anniversary.css') }}">
+    <title>我们的纪念日</title>
+    <!-- 引用CSS文件 -->
+    <link rel="stylesheet" href="style.css">
+    <!-- 引用字体 -->
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Ma+Shan+Zheng&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div id="seasonal-container"></div>
     <div class="container">
+        <!-- 爱情计数器 -->
         <div class="love-counter">
-            <div class="date-range">
-                <span>{{ start_date }}</span>
-                <span class="separator">→</span>
-                <span id="today-date">{{ today_date }}</span>
+            <!-- 标题和爱心 -->
+            <div class="title">
+                <div class="heart"></div>
+                <h1 class="main-title">我们的纪念日</h1>
             </div>
-            <div class="heart"></div>
-            <h1 class="counter-text">灰老公和熊老婆已经在一起</h1>
-            <div class="days">{{ days }}</div>
-            <p class="days-text">天</p>
-            <p class="motto">爱你一生一世</p>
-            
-            <!-- 15周年倒计时区块 -->
+            <!-- 日期范围 -->
+            <div class="date-range">
+                <span>2009.12.10</span>
+                <span class="separator">❤</span>
+                <span>至今</span>
+            </div>
+            <!-- 计数文本 -->
+            <div class="counter-text">我们已经在一起</div>
+            <!-- 天数 -->
+            <div class="days">XXXX天</div>
+            <!-- 座右铭 -->
+            <div class="motto">爱你一生一世</div>
+            <!-- 倒计时区域 -->
             <div class="anniversary-countdown">
-                <div class="countdown-glass">
-                    <h2>距离我们的15周年纪念日还有</h2>
+                <div class="countdown-card">
+                    <div class="countdown-title">距离15周年纪念日还有</div>
                     <div class="countdown-timer">
                         <div class="countdown-item">
-                            <span class="countdown-value" id="countdown-days">--</span>
-                            <span class="countdown-label">天</span>
+                            <div class="countdown-value">XX</div>
+                            <div class="countdown-label">天</div>
                         </div>
                         <div class="countdown-item">
-                            <span class="countdown-value" id="countdown-hours">--</span>
-                            <span class="countdown-label">时</span>
+                            <div class="countdown-value">XX</div>
+                            <div class="countdown-label">小时</div>
                         </div>
                         <div class="countdown-item">
-                            <span class="countdown-value" id="countdown-minutes">--</span>
-                            <span class="countdown-label">分</span>
+                            <div class="countdown-value">XX</div>
+                            <div class="countdown-label">分钟</div>
                         </div>
                         <div class="countdown-item">
-                            <span class="countdown-value" id="countdown-seconds">--</span>
-                            <span class="countdown-label">秒</span>
+                            <div class="countdown-value">XX</div>
+                            <div class="countdown-label">秒</div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <script src="{{ url_for('static', filename='seasonal.js') }}"></script>
-    <script src="{{ url_for('static', filename='countdown.js') }}"></script>
-    <script src="{{ url_for('static', filename='anniversary.js') }}"></script>
+    <!-- 引用JavaScript文件 -->
+    <script src="script.js"></script>
 </body>
 </html>
