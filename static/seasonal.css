@@ -14,60 +14,20 @@
     background: linear-gradient(135deg, #ffebf3 0%, #fff5f5 100%);
 }
 
-/* 移除对心形的特殊样式 */
-/* .spring .heart {
-    background-color: #ff9ecd;
-} */
-
-/* .spring .heart::before,
-.spring .heart::after {
-    background-color: #ff9ecd;
-} */
-
 /* 夏季主题 */
 .summer {
     background: linear-gradient(135deg, #e4f1fe 0%, #e8fae8 100%);
 }
-
-/* 移除对心形的特殊样式 */
-/* .summer .heart {
-    background-color: #FF6B6B;
-} */
-
-/* .summer .heart::before,
-.summer .heart::after {
-    background-color: #FF6B6B;
-} */
 
 /* 秋季主题 */
 .autumn {
     background: linear-gradient(135deg, #fff3d4 0%, #ffe5d9 100%);
 }
 
-/* 移除对心形的特殊样式 */
-/* .autumn .heart {
-    background-color: #d35400;
-} */
-
-/* .autumn .heart::before,
-.autumn .heart::after {
-    background-color: #d35400;
-} */
-
 /* 冬季主题 */
 .winter {
     background: linear-gradient(135deg, #f0f9ff 0%, #e8f4f8 100%);
 }
-
-/* 移除对心形的特殊样式 */
-/* .winter .heart {
-    background-color: #FF69B4;
-} */
-
-/* .winter .heart::before,
-.winter .heart::after {
-    background-color: #FF69B4;
-} */
 
 /* 季节特效容器 */
 #seasonal-container {
@@ -113,7 +73,7 @@
 /* 动画定义 */
 @keyframes sakuraFall {
     0% {
-        transform: translate(0, -10vh) rotate(0deg);
+        transform: translate3d(0, -10vh, 0) rotate(0deg);
         opacity: 0;
     }
     10% {
@@ -123,29 +83,29 @@
         opacity: 1;
     }
     100% {
-        transform: translate(20px, 100vh) rotate(720deg);
+        transform: translate3d(20px, 100vh, 0) rotate(720deg);
         opacity: 0;
     }
 }
 
 @keyframes sunshineFade {
     0% {
-        transform: translate(0, 110vh) scale(0.8);
+        transform: translate3d(0, 110vh, 0) scale(0.8);
         opacity: 0;
     }
     50% {
         opacity: 0.8;
-        transform: translate(10px, 50vh) scale(1.2);
+        transform: translate3d(10px, 50vh, 0) scale(1.2);
     }
     100% {
-        transform: translate(20px, -10vh) scale(0.8);
+        transform: translate3d(20px, -10vh, 0) scale(0.8);
         opacity: 0;
     }
 }
 
 @keyframes leafFall {
     0% {
-        transform: translate(0, -10vh) rotate(0deg);
+        transform: translate3d(0, -10vh, 0) rotate(0deg);
         opacity: 0;
     }
     10% {
@@ -155,14 +115,14 @@
         opacity: 1;
     }
     100% {
-        transform: translate(30px, 100vh) rotate(540deg);
+        transform: translate3d(30px, 100vh, 0) rotate(540deg);
         opacity: 0;
     }
 }
 
 @keyframes snowFall {
     0% {
-        transform: translate(0, -10vh) rotate(0deg);
+        transform: translate3d(0, -10vh, 0) rotate(0deg);
         opacity: 0;
     }
     10% {
@@ -172,7 +132,25 @@
         opacity: 1;
     }
     100% {
-        transform: translate(20px, 100vh) rotate(360deg);
+        transform: translate3d(20px, 100vh, 0) rotate(360deg);
         opacity: 0;
     }
+}
+
+/* 雪花元素样式 */
+.snowflake {
+    position: absolute;
+    pointer-events: none;
+    z-index: 1;
+    will-change: transform;
+    animation: snowFall 15s linear infinite;
+}
+
+/* 响应式设计（可选） */
+@media (max-width: 768px) {
+    .theme-toggle {
+        font-size: 12px;
+        padding: 8px 16px;
+    }
+    /* 其他响应式调整 */
 }
