@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="{{ 'anniversary-mode' if is_anniversary else '' }}">
     <div class="snow-toggle">
         <button class="toggle-snow">❄️</button>
     </div>
@@ -88,6 +88,23 @@
         <div class="snowflake">❄</div>
         <div class="snowflake">❄</div>
         <div class="snowflake">❄</div>
+    </div>
+    
+    <div class="petals" aria-hidden="true">
+        <div class="petal">❤️</div>
+        <div class="petal">❤️</div>
+        <div class="petal">❤️</div>
+        <div class="petal">❤️</div>
+        <div class="petal">❤️</div>
+        <div class="petal">❤️</div>
+        <div class="petal">❤️</div>
+        <div class="petal" style="animation-delay: 0.5s">❤️</div>
+        <div class="petal" style="animation-delay: 1s">❤️</div>
+        <div class="petal" style="animation-delay: 1.5s">❤️</div>
+        <div class="petal" style="animation-delay: 2s">❤️</div>
+        <div class="petal" style="animation-delay: 2.5s">❤️</div>
+        <div class="petal" style="animation-delay: 3s">❤️</div>
+        <div class="petal" style="animation-delay: 3.5s">❤️</div>
     </div>
     
     <script src="{{ url_for('static', filename='script.js') }}"></script>

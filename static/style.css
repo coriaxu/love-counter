@@ -282,6 +282,71 @@ body {
     -webkit-text-fill-color: transparent;
 }
 
+/* 纪念日模式 */
+body.anniversary-mode {
+    transition: background 5s ease;
+    background: linear-gradient(135deg, #fbd5d1 0%, #eebbbb 100%);
+}
+
+body.anniversary-mode .heart-icon {
+    transition: transform 2s ease, filter 2s ease;
+    transform: scale(1.5);
+    filter: drop-shadow(0 0 20px rgba(255, 200, 200, 0.8));
+}
+
+.petals {
+    display: none;
+    pointer-events: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+}
+
+body.anniversary-mode .petals {
+    display: block;
+}
+
+.petal {
+    position: absolute;
+    font-size: 24px;
+    left: 0;
+    animation: fall 10s linear infinite;
+    will-change: transform;
+}
+
+.petal:nth-child(1) { left: 5%; }
+.petal:nth-child(2) { left: 15%; }
+.petal:nth-child(3) { left: 25%; }
+.petal:nth-child(4) { left: 35%; }
+.petal:nth-child(5) { left: 45%; }
+.petal:nth-child(6) { left: 55%; }
+.petal:nth-child(7) { left: 65%; }
+.petal:nth-child(8) { left: 75%; }
+.petal:nth-child(9) { left: 85%; }
+.petal:nth-child(10) { left: 95%; }
+.petal:nth-child(11) { left: 10%; }
+.petal:nth-child(12) { left: 30%; }
+.petal:nth-child(13) { left: 50%; }
+.petal:nth-child(14) { left: 70%; }
+
+.petal::before {
+    content: "";
+}
+
+@keyframes fall {
+    0% {
+        transform: translateY(-100vh) rotate(0deg) scale(0.8);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh) rotate(360deg) scale(1.2);
+        opacity: 0.4;
+    }
+}
+
 /* 响应式设计 */
 @media (max-width: 480px) {
     body {

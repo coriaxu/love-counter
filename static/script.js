@@ -103,4 +103,23 @@ document.addEventListener('DOMContentLoaded', () => {
     } catch (error) {
         console.error('初始化失败:', error);
     }
+
+    // 检查是否是纪念日模式
+    const body = document.body;
+    const isAnniversary = body.classList.contains('anniversary-mode');
+    if (isAnniversary) {
+        // 延迟2秒让倒计时慢慢淡出
+        setTimeout(() => {
+            const countdownTitle = document.querySelector('.countdown-title');
+            const countdownTimer = document.querySelector('.countdown-timer');
+            countdownTimer.style.transition = 'opacity 2s ease';
+            countdownTimer.style.opacity = '0';
+            
+            // 2秒后替换为祝福语
+            setTimeout(() => {
+                countdownTitle.textContent = '十五年风雨同舟，未来继续相守';
+                countdownTimer.style.display = 'none';
+            }, 2000);
+        }, 1000);
+    }
 });

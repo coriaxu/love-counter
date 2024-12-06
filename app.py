@@ -29,7 +29,6 @@ def get_beijing_time():
 def is_anniversary_date(current_date):
     """检查是否是15周年纪念日（基于北京时间）"""
     anniversary = datetime(2024, 12, 10, tzinfo=BEIJING_TZ)
-    # 只在2024年12月10日当天触发
     return (current_date.year == 2024 and 
             current_date.month == 12 and 
             current_date.day == 10)
@@ -58,7 +57,8 @@ def index():
         return render_template('index.html', 
                             days=days,
                             start_date=start_date_str,
-                            today_date=today_date_str)
+                            today_date=today_date_str,
+                            is_anniversary=is_anniversary_date(display_date))
                             
     except Exception as e:
         logger.error(f"Error in index route: {str(e)}")
