@@ -1,23 +1,77 @@
-简体中文描述：
-智能阅读助手是一款强大的网页内容总结工具，它能帮助用户快速理解网页的核心内容。
+// 倒计时目标时间
+const targetDate = new Date('2025-12-10T00:00:00+08:00');
 
-主要特点：
-• 一键总结：只需点击即可获取当前网页的核心内容
-• 双语支持：支持中英文内容总结
-• 实时显示：采用流式输出，提供即时反馈
-• 优雅界面：简洁现代的用户界面设计
-• 状态保存：自动保存上次的总结内容
+// 格式化数字，保证两位数显示
+function padNumber(num) {
+    return num.toString().padStart(2, '0');
+}
 
-English Description:
-Smart Reader Assistant is a powerful webpage content summarizer that helps users quickly understand the core content of web pages.
+// 更新倒计时
+function updateCountdown() {
+    const now = new Date();
+    const timeLeft = targetDate - now;
+    
+    if (timeLeft <= 0) {
+        document.querySelector('.countdown-title').textContent = '今天是我们的16周年纪念日！';
+        document.querySelector('.countdown-timer').style.display = 'none';
+        return;
+    }
+    
+    const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+    
+    document.getElementById('days').textContent = padNumber(days);
+    document.getElementById('hours').textContent = padNumber(hours);
+    document.getElementById('minutes').textContent = padNumber(minutes);
+    document.getElementById('seconds').textContent = padNumber(seconds);
+}
 
-Key Features:
-• One-click Summary: Get the essence of any webpage with just one click
-• Bilingual Support: Summarize content in both Chinese and English
-• Real-time Display: Stream-based output for immediate feedback
-• Elegant Interface: Clean and modern user interface design
-• State Preservation: Automatically saves your last summary
+// 更新当前日期显示
+function updateCurrentDate() {
+    const now = new Date();
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    const dateStr = now.toLocaleDateString('zh-CN', options);
+    document.getElementById('current-date').textContent = dateStr;
+}
 
-// 重要日期
-const startDate = new Date('2009-12-10T00:00:00');
-const anniversaryDate = new Date('2025-12-10T00:00:00');
+// 雪花效果
+document.addEventListener('DOMContentLoaded', () => {
+    const snowToggle = document.querySelector('.snow-toggle button');
+    const snowflakes = document.querySelector('.snowflakes');
+    let isSnowActive = false;
+
+    if (!snowToggle || !snowflakes) {
+        console.error('雪花按钮或雪花容器未找到');
+        return;
+    }
+
+    snowflakes.style.display = 'none';
+    
+    snowToggle.addEventListener('click', (event) => {
+        isSnowActive = !isSnowActive;
+        snowToggle.classList.toggle('active');
+        snowflakes.style.display = isSnowActive ? 'block' : 'none';
+        event.stopPropagation();
+    });
+});
+
+// 页面加载完成后初始化
+document.addEventListener('DOMContentLoaded', () => {
+    try {
+        // 更新当前日期
+        updateCurrentDate();
+        
+        // 立即更新一次倒计时
+        updateCountdown();
+        
+        // 每秒更新倒计时
+        setInterval(updateCountdown, 1000);
+        
+        // 每分钟更新日期显示
+        setInterval(updateCurrentDate, 60000);
+    } catch (error) {
+        console.error('初始化失败:', error);
+    }
+});

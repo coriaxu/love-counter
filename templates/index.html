@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <title>我们的恋爱纪念日</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="/static/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Ma+Shan+Zheng&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body class="{{ 'anniversary-mode' if is_anniversary else '' }}">
@@ -20,7 +20,7 @@
                     <div class="date-range">
                         <span>2009年12月10日</span>
                         <span class="date-arrow">→</span>
-                        <span id="current-date">2024年12月04日</span>
+                        <span id="current-date">2024年12月19日</span>
                     </div>
                 </section>
 
@@ -45,7 +45,7 @@
                         灰老公和熊老婆已经在一起
                     </div>
                     
-                    <div class="days">5473</div>
+                    <div class="days">{{ days_together }}</div>
                     
                     <div class="motto">爱你一生一世</div>
                 </section>
@@ -55,19 +55,19 @@
                         <div class="countdown-title">距离我们的16周年纪念日还有</div>
                         <div class="countdown-timer">
                             <div class="countdown-item">
-                                <div class="countdown-value" id="days">00</div>
+                                <div class="countdown-value" id="days">{{ '%02d' % time_to_anniversary.days }}</div>
                                 <div class="countdown-label">天</div>
                             </div>
                             <div class="countdown-item">
-                                <div class="countdown-value" id="hours">00</div>
+                                <div class="countdown-value" id="hours">{{ '%02d' % time_to_anniversary.hours }}</div>
                                 <div class="countdown-label">时</div>
                             </div>
                             <div class="countdown-item">
-                                <div class="countdown-value" id="minutes">00</div>
+                                <div class="countdown-value" id="minutes">{{ '%02d' % time_to_anniversary.minutes }}</div>
                                 <div class="countdown-label">分</div>
                             </div>
                             <div class="countdown-item">
-                                <div class="countdown-value" id="seconds">00</div>
+                                <div class="countdown-value" id="seconds">{{ '%02d' % time_to_anniversary.seconds }}</div>
                                 <div class="countdown-label">秒</div>
                             </div>
                         </div>
@@ -107,6 +107,6 @@
         <div class="petal" style="animation-delay: 3.5s">❤️</div>
     </div>
     
-    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script src="/static/script.js"></script>
 </body>
 </html>

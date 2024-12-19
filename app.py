@@ -1,5 +1,5 @@
-from flask import Flask, render_template, send_from_directory
-from datetime import datetime
+from datetime import datetime, timedelta
+from flask import Flask, render_template, send_from_directory, jsonify
 import pytz
 import os
 import logging
@@ -8,74 +8,120 @@ import logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-app = Flask(__name__, 
-            static_folder='static',
-            static_url_path='/static',
-            template_folder='templates')
+# 创建Flask应用
+app = Flask(__name__)
 
-# 开启调试模式
-app.debug = True
-
-# 北京时区
+# 设置时区
 BEIJING_TZ = pytz.timezone('Asia/Shanghai')
 
-# 设置恋爱纪念日（北京时间）
-LOVE_START_DATE = datetime(2009, 12, 10, tzinfo=BEIJING_TZ)
+# 重要日期 - 使用datetime.combine确保时间是当天的0点
+START_DATE = datetime.combine(
+    datetime(2009, 12, 10).date(),
+    datetime.min.time(),
+    tzinfo=BEIJING_TZ
+)
+
+ANNIVERSARY_DATE = datetime.combine(
+    datetime(2025, 12, 10).date(),
+    datetime.min.time(),
+    tzinfo=BEIJING_TZ
+)
 
 def get_beijing_time():
-    """获取北京时间"""
-    return datetime.now(BEIJING_TZ)
+    """获取北京时间（固定时间用于测试）"""
+    current = datetime.strptime('2024-12-19 12:04:03', '%Y-%m-%d %H:%M:%S')
+    return BEIJING_TZ.localize(current)
+
+def calculate_days(start_date, end_date):
+    """计算两个日期之间的天数，只考虑日期部分"""
+    # 转换为日期对象，忽略时间部分
+    start = start_date.date()
+    end = end_date.date()
+    return (end - start).days
+
+def calculate_time_parts(from_date, to_date):
+    """计算两个时间之间的天、时、分、秒"""
+    diff = to_date - from_date
+    
+    # 计算总秒数
+    total_seconds = int(diff.total_seconds())
+    
+    # 计算天数（向下取整）
+    days = total_seconds // (24 * 3600)
+    
+    # 计算剩余的小时、分钟和秒
+    remaining = total_seconds % (24 * 3600)
+    hours = remaining // 3600
+    remaining = remaining % 3600
+    minutes = remaining // 60
+    seconds = remaining % 60
+    
+    return {
+        'days': days,
+        'hours': hours,
+        'minutes': minutes,
+        'seconds': seconds
+    }
 
 def is_anniversary_date(current_date):
     """检查是否是16周年纪念日（基于北京时间）"""
-    anniversary = datetime(2025, 12, 10, tzinfo=BEIJING_TZ)
-    return (current_date.year == 2025 and 
-            current_date.month == 12 and 
-            current_date.day == 10)
+    return (current_date.date() == ANNIVERSARY_DATE.date())
 
 @app.route('/')
 def index():
-    """主页路由"""
     try:
-        # 获取当前北京时间
         current_date = get_beijing_time()
         logger.info(f'访问主页 - 当前北京时间: {current_date}')
         
-        # 如果是16周年纪念日，使用固定日期
-        if is_anniversary_date(current_date):
-            display_date = datetime(2025, 12, 10, tzinfo=BEIJING_TZ)
-        else:
-            display_date = current_date
+        # 计算在一起的天数（只考虑日期部分）
+        days_together = calculate_days(START_DATE, current_date)
+        logger.info(f'在一起的天数: {days_together}')
         
-        # 计算天数（使用日期部分进行计算）
-        days = (display_date.date() - LOVE_START_DATE.date()).days
+        # 计算到16周年的具体时间
+        time_to_anniversary = calculate_time_parts(current_date, ANNIVERSARY_DATE)
+        logger.info(f'距离16周年还有: {time_to_anniversary}')
         
-        # 格式化日期显示
-        start_date_str = LOVE_START_DATE.strftime("%Y年%m月%d日")
-        today_date_str = display_date.strftime("%Y年%m月%d日")
+        # 检查是否是纪念日
+        is_anniversary = is_anniversary_date(current_date)
+        logger.info(f'是否是纪念日: {is_anniversary}')
         
-        return render_template('index.html', 
-                            days=days,
-                            start_date=start_date_str,
-                            today_date=today_date_str,
-                            is_anniversary=is_anniversary_date(display_date))
-                            
+        return render_template('index.html',
+                             days_together=days_together,
+                             time_to_anniversary=time_to_anniversary,
+                             is_anniversary=is_anniversary)
     except Exception as e:
-        logger.error(f"Error in index route: {str(e)}")
+        logger.error(f'渲染主页时发生错误: {str(e)}')
         return str(e), 500
 
 @app.route('/static/<path:filename>')
 def serve_static(filename):
-    """静态文件路由"""
-    logger.info(f'请求静态文件: {filename}')
+    """提供静态文件服务"""
     return send_from_directory('static', filename)
 
+@app.route('/api/time')
+def get_time():
+    """获取当前时间信息的API"""
+    current_date = get_beijing_time()
+    days_together = calculate_days(START_DATE, current_date)
+    time_to_anniversary = calculate_time_parts(current_date, ANNIVERSARY_DATE)
+    
+    return jsonify({
+        'current_date': current_date.isoformat(),
+        'days_together': days_together,
+        'time_to_anniversary': time_to_anniversary,
+        'is_anniversary': is_anniversary_date(current_date)
+    })
+
 if __name__ == '__main__':
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--port', type=int, default=4000)
+    args = parser.parse_args()
+    
     # 确保static文件夹存在
     if not os.path.exists('static'):
         os.makedirs('static')
-        logger.warning(f'创建static文件夹: static')
+        logger.info('创建static文件夹')
     
-    port = int(os.environ.get('PORT', 4000))
     logger.info(f'启动服务器 - 静态文件目录: static')
-    app.run(host='0.0.0.0', port=port, debug=True)
+    app.run(debug=True, port=args.port)
