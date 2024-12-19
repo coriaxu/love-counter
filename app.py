@@ -27,9 +27,9 @@ def get_beijing_time():
     return datetime.now(BEIJING_TZ)
 
 def is_anniversary_date(current_date):
-    """检查是否是15周年纪念日（基于北京时间）"""
-    anniversary = datetime(2024, 12, 10, tzinfo=BEIJING_TZ)
-    return (current_date.year == 2024 and 
+    """检查是否是16周年纪念日（基于北京时间）"""
+    anniversary = datetime(2025, 12, 10, tzinfo=BEIJING_TZ)
+    return (current_date.year == 2025 and 
             current_date.month == 12 and 
             current_date.day == 10)
 
@@ -41,9 +41,9 @@ def index():
         current_date = get_beijing_time()
         logger.info(f'访问主页 - 当前北京时间: {current_date}')
         
-        # 如果是15周年纪念日，使用固定日期
+        # 如果是16周年纪念日，使用固定日期
         if is_anniversary_date(current_date):
-            display_date = datetime(2024, 12, 10, tzinfo=BEIJING_TZ)
+            display_date = datetime(2025, 12, 10, tzinfo=BEIJING_TZ)
         else:
             display_date = current_date
         
