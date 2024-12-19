@@ -1,4 +1,4 @@
-# Love Counter 灰老公跟熊老婆的恋爱计日器 ❤️
+# Love Counter 自用恋爱计日器 ❤️
 
 自用恋爱计日网站，采用玫瑰金设计风格。
 An elegant anniversary countdown website with a rose gold design theme.
