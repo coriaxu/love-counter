@@ -21,7 +21,7 @@ html, body {
 }
 
 body {
-    font-family: 'Ma Shan Zheng', cursive;
+    font-family: 'Ma Shan Zheng', system-ui, -apple-system, sans-serif;
     background: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%);
     color: #8b7355;
     line-height: 1.6;
@@ -215,14 +215,16 @@ body {
 }
 
 .days {
-    font-family: 'Playfair Display', serif;
+    font-family: system-ui, -apple-system, sans-serif;
     font-size: min(12vw, 6rem);
     font-weight: bold;
     background: linear-gradient(45deg, #ff9a9e, #fad0c4);
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
     line-height: 1.2;
     text-shadow: 2px 2px 4px rgba(255, 154, 158, 0.3);
+    text-align: center;
 }
 
 .motto {
@@ -275,12 +277,13 @@ body {
 }
 
 .countdown-value {
-    font-family: 'Playfair Display', serif;
+    font-family: system-ui, -apple-system, sans-serif;
     font-size: min(5vw, 2.8rem);
     font-weight: bold;
     background: linear-gradient(45deg, #ff9a9e, #fad0c4);
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
     margin-bottom: 0.3rem;
 }
 
