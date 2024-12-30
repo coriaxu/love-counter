@@ -1,24 +1,40 @@
 // 恋爱开始日期
-const startDate = new Date('2009-12-10T00:00:00'); // 2009年12月10日
-const totalDaysFromStart = 5499;  // 手动计算的总天数
+const startDate = new Date('2009-12-10T00:00:00+08:00'); // 2009年12月10日，明确指定时区
 
 // 更新计时器
 function updateCounter() {
     const now = new Date();
     const diff = now - startDate;
     
-    // 显示总天数
-    document.getElementById('totalDays').textContent = totalDaysFromStart;
+    // 计算实际经过的总天数
+    const totalDays = Math.floor(diff / (1000 * 60 * 60 * 24));
+    document.getElementById('totalDays').textContent = totalDays;
     
     // 计算当前时分秒
     const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
-    // 计算年月日
-    const years = Math.floor(totalDaysFromStart / 365);
-    const months = Math.floor((totalDaysFromStart % 365) / 30);
-    const days = Math.floor(totalDaysFromStart % 30);
+    // 使用Date对象进行准确的年月日计算
+    const currentDate = new Date(now);
+    const startYear = startDate.getFullYear();
+    const currentYear = currentDate.getFullYear();
+    
+    let years = currentYear - startYear;
+    let months = currentDate.getMonth() - startDate.getMonth();
+    let days = currentDate.getDate() - startDate.getDate();
+    
+    // 处理月份和天数的借位
+    if (days < 0) {
+        months--;
+        // 获取上个月的最后一天
+        const lastMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 0);
+        days += lastMonth.getDate();
+    }
+    if (months < 0) {
+        years--;
+        months += 12;
+    }
 
     document.getElementById('years').textContent = String(years).padStart(2, '0');
     document.getElementById('months').textContent = String(months).padStart(2, '0');
@@ -147,4 +163,3 @@ document.addEventListener('DOMContentLoaded', () => {
     background.animate();
     hearts.animate();
 });
-
