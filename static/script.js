@@ -3,14 +3,19 @@ const startDate = new Date('2009-12-10T00:00:00+08:00'); // 2009年12月10日，
 
 // 更新计时器
 function updateCounter() {
+    // 使用当前实际日期
     const now = new Date();
-    const diff = now - startDate;
+    
+    // 确保两个日期都使用相同的时区
+    const utc1 = Date.UTC(startDate.getFullYear(), startDate.getMonth(), startDate.getDate());
+    const utc2 = Date.UTC(now.getFullYear(), now.getMonth(), now.getDate());
     
     // 计算实际经过的总天数
-    const totalDays = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const totalDays = Math.floor((utc2 - utc1) / (1000 * 60 * 60 * 24));
     document.getElementById('totalDays').textContent = totalDays;
     
     // 计算当前时分秒
+    const diff = now - startDate;
     const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((diff % (1000 * 60)) / 1000);
