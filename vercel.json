@@ -1,19 +1,6 @@
 {
     "version": 2,
-    "regions": ["hkg1"],
-    "functions": {
-        "api/*.py": {
-            "runtime": "python3.9"
-        }
-    },
     "routes": [
-        {
-            "src": "/static/(.*)",
-            "dest": "/static/$1",
-            "headers": {
-                "cache-control": "public, max-age=31536000, immutable"
-            }
-        },
         {
             "src": "/(.*)",
             "dest": "api/app.py"
