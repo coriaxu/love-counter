@@ -1,16 +1,11 @@
 {
     "version": 2,
     "regions": ["hkg1"],
-    "builds": [
-        {
-            "src": "app.py",
-            "use": "@vercel/python"
-        },
-        {
-            "src": "static/**",
-            "use": "@vercel/static"
+    "functions": {
+        "api/*.py": {
+            "runtime": "python3.9"
         }
-    ],
+    },
     "routes": [
         {
             "src": "/static/(.*)",
@@ -21,7 +16,7 @@
         },
         {
             "src": "/(.*)",
-            "dest": "/app.py"
+            "dest": "api/app.py"
         }
     ]
 }
