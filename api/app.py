@@ -10,11 +10,14 @@ from cachelib import SimpleCache
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
+# 获取项目根目录的绝对路径
+ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
 # 创建Flask应用
 app = Flask(__name__, 
-           static_folder='static',
+           static_folder=os.path.join(ROOT_DIR, 'static'),
            static_url_path='/static',
-           template_folder='templates')
+           template_folder=os.path.join(ROOT_DIR, 'templates'))
 
 # 创建缓存对象
 cache = SimpleCache()
