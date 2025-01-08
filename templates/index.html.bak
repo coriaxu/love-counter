@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>我们的恋爱纪念日</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body class="{{ 'anniversary-mode' if is_anniversary else '' }}">
+    <div class="snow-toggle">
+        <button class="toggle-snow">❄️</button>
+    </div>
+
+    <div class="aspect-ratio-container">
+        <div class="container">
+            <div class="content-wrapper">
+                <section class="header-section">
+                    <h1 class="main-title">我们的恋爱纪念日</h1>
+                    <div class="date-range">
+                        <span>2009年12月10日</span>
+                        <span class="date-arrow">→</span>
+                        <span id="current-date">2025年1月8日</span>
+                    </div>
+                </section>
+
+                <section class="middle-section">
+                    <div class="heart-container">
+                        <div class="heart-icon">
+                            <svg viewBox="0 0 32 32" width="100%" height="100%">
+                                <defs>
+                                    <linearGradient id="heartGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                        <stop offset="0%" style="stop-color:#ff9a9e"/>
+                                        <stop offset="100%" style="stop-color:#fad0c4"/>
+                                    </linearGradient>
+                                </defs>
+                                <path d="M16,28.261c0,0-14-7.926-14-17.046c0-8.565,9.333-11.816,14-4.399
+                                         c4.667-7.417,14-4.166,14,4.399C30,20.335,16,28.261,16,28.261z" 
+                                      fill="url(#heartGradient)"/>
+                            </svg>
+                        </div>
+                    </div>
+                    
+                    <div class="couple-name">
+                        灰老公和熊老婆已经在一起
+                    </div>
+                    
+                    <div class="days">{{ days_together }}</div>
+                    
+                    <div class="motto">爱你一生一世</div>
+                </section>
+
+                <section class="footer-section">
+                    <div class="anniversary-countdown">
+                        <div class="countdown-title">距离我们的16周年纪念日还有</div>
+                        <div class="countdown-timer">
+                            <div class="countdown-item">
+                                <div class="countdown-value" id="days">{{ '%02d' % time_to_anniversary.days }}</div>
+                                <div class="countdown-label">天</div>
+                            </div>
+                            <div class="countdown-item">
+                                <div class="countdown-value" id="hours">{{ '%02d' % time_to_anniversary.hours }}</div>
+                                <div class="countdown-label">时</div>
+                            </div>
+                            <div class="countdown-item">
+                                <div class="countdown-value" id="minutes">{{ '%02d' % time_to_anniversary.minutes }}</div>
+                                <div class="countdown-label">分</div>
+                            </div>
+                            <div class="countdown-item">
+                                <div class="countdown-value" id="seconds">{{ '%02d' % time_to_anniversary.seconds }}</div>
+                                <div class="countdown-label">秒</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <div class="snowflakes" aria-hidden="true">
+        <div class="snowflake">❄</div>
+        <div class="snowflake">❄</div>
+        <div class="snowflake">❄</div>
+        <div class="snowflake">❄</div>
+        <div class="snowflake">❄</div>
+        <div class="snowflake">❄</div>
+        <div class="snowflake">❄</div>
+        <div class="snowflake">❄</div>
+        <div class="snowflake">❄</div>
+        <div class="snowflake">❄</div>
+    </div>
+    
+    <div class="petals" aria-hidden="true">
+        <div class="petal">❤️</div>
+        <div class="petal">❤️</div>
+        <div class="petal">❤️</div>
+        <div class="petal">❤️</div>
+        <div class="petal">❤️</div>
+        <div class="petal">❤️</div>
+        <div class="petal">❤️</div>
+        <div class="petal" style="animation-delay: 0.5s">❤️</div>
+        <div class="petal" style="animation-delay: 1s">❤️</div>
+        <div class="petal" style="animation-delay: 1.5s">❤️</div>
+        <div class="petal" style="animation-delay: 2s">❤️</div>
+        <div class="petal" style="animation-delay: 2.5s">❤️</div>
+        <div class="petal" style="animation-delay: 3s">❤️</div>
+        <div class="petal" style="animation-delay: 3.5s">❤️</div>
+    </div>
+    
+    <script src="/static/script.js"></script>
+</body>
+</html>

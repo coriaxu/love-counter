@@ -1,0 +1,60 @@
+/* 设置页面整体风格 */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'SF Pro Display', sans-serif;
+    background: linear-gradient(to bottom, #fbe7e9, #f8e8e6);
+    overflow: hidden;
+}
+
+/* 容器样式 */
+.container {
+    text-align: center;
+    padding-top: 20vh;
+    color: #7a3b5a;
+}
+
+/* 标题样式 */
+h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #9c3d72;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* 计时器样式 */
+.timer {
+    font-size: 2rem;
+    color: #4d194d;
+    font-weight: 500;
+    margin-top: 20px;
+}
+
+/* 总天数样式 */
+.total-days {
+    margin-bottom: 2rem;
+}
+
+.total-days span {
+    font-size: 5rem;
+    color: #ff6b6b;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(45deg, #ff6b6b, #ffd93d);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.total-days label {
+    font-size: 1.5rem;
+    margin-top: 1rem;
+}
+
+/* 爱心背景 Canvas */
+#heartCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+}

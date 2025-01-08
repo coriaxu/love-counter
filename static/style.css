@@ -1,60 +1,212 @@
-/* 设置页面整体风格 */
-body {
+/* 基础变量 */
+:root {
+    --primary-color: #ff6b6b;
+    --secondary-color: #ffd93d;
+    --text-primary: #7a3b5a;
+    --text-secondary: #9c3d72;
+    --background-start: #fbe7e9;
+    --background-end: #f8e8e6;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --card-radius: 20px;
+}
+
+/* 基础样式 */
+* {
     margin: 0;
     padding: 0;
-    font-family: 'SF Pro Display', sans-serif;
-    background: linear-gradient(to bottom, #fbe7e9, #f8e8e6);
-    overflow: hidden;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: linear-gradient(135deg, var(--background-start), var(--background-end));
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
 }
 
 /* 容器样式 */
 .container {
-    text-align: center;
-    padding-top: 20vh;
-    color: #7a3b5a;
+    width: 90%;
+    max-width: 600px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: var(--card-radius);
+    padding: 2.5rem;
+    box-shadow: 0 10px 30px var(--shadow-color);
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 }
 
-/* 标题样式 */
-h1 {
-    font-size: 3rem;
+/* 标题和日期样式 */
+.main-title {
+    font-size: 2.5rem;
     font-weight: bold;
-    color: #9c3d72;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-/* 计时器样式 */
-.timer {
-    font-size: 2rem;
-    color: #4d194d;
-    font-weight: 500;
-    margin-top: 20px;
-}
-
-/* 总天数样式 */
-.total-days {
-    margin-bottom: 2rem;
-}
-
-.total-days span {
-    font-size: 5rem;
-    color: #ff6b6b;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-    background: linear-gradient(45deg, #ff6b6b, #ffd93d);
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    text-shadow: 2px 2px 4px var(--shadow-color);
 }
 
-.total-days label {
+.date-range {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    font-size: 1.2rem;
+    color: var(--text-primary);
+}
+
+.date-arrow {
+    color: var(--primary-color);
+}
+
+/* 爱心动画 */
+.heart-container {
+    margin: 2rem auto;
+    width: 100px;
+    height: 100px;
+    position: relative;
+    animation: float 6s ease-in-out infinite;
+}
+
+.heart {
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform: rotate(45deg);
+    animation: pulse 1.5s ease infinite;
+}
+
+.heart::before,
+.heart::after {
+    content: '';
+    width: 100%;
+    height: 100%;
+    background: inherit;
+    border-radius: 50%;
+    position: absolute;
+}
+
+.heart::before {
+    left: -50%;
+}
+
+.heart::after {
+    top: -50%;
+}
+
+/* 天数显示 */
+.days {
+    font-size: 5rem;
+    font-weight: bold;
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 1rem 0;
+    text-shadow: 2px 2px 4px var(--shadow-color);
+}
+
+.couple-name {
     font-size: 1.5rem;
-    margin-top: 1rem;
+    color: var(--text-primary);
+    margin: 1rem 0;
 }
 
-/* 爱心背景 Canvas */
-#heartCanvas {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: -1;
+.motto {
+    font-size: 1.2rem;
+    color: var(--text-primary);
+    margin: 1rem 0 2rem;
+}
+
+/* 倒计时样式 */
+.countdown-container {
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: calc(var(--card-radius) - 5px);
+    padding: 1.5rem;
+    margin-top: 2rem;
+    box-shadow: 0 5px 15px var(--shadow-color);
+}
+
+.countdown-title {
+    font-size: 1.2rem;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+}
+
+.countdown-timer {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.time-block {
+    text-align: center;
+}
+
+.time-value {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    min-width: 2.5ch;
+    text-shadow: 1px 1px 2px var(--shadow-color);
+}
+
+.time-label {
+    font-size: 1rem;
+    color: var(--text-primary);
+    margin-top: 0.5rem;
+}
+
+/* 动画定义 */
+@keyframes pulse {
+    0% {
+        transform: rotate(45deg) scale(1);
+    }
+    50% {
+        transform: rotate(45deg) scale(1.1);
+    }
+    100% {
+        transform: rotate(45deg) scale(1);
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* 响应式设计 */
+@media (max-width: 480px) {
+    .container {
+        width: 95%;
+        padding: 1.5rem;
+    }
+    
+    .main-title {
+        font-size: 2rem;
+    }
+    
+    .days {
+        font-size: 4rem;
+    }
+    
+    .countdown-timer {
+        gap: 1rem;
+    }
+    
+    .time-value {
+        font-size: 2rem;
+    }
 }
