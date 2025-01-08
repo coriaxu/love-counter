@@ -22,15 +22,14 @@ START_DATE = datetime.combine(
 )
 
 ANNIVERSARY_DATE = datetime.combine(
-    datetime(2025, 12, 10).date(),
+    datetime(2025, 1, 8).date(),
     datetime.min.time(),
     tzinfo=BEIJING_TZ
 )
 
 def get_beijing_time():
-    """获取北京时间（固定时间用于测试）"""
-    current = datetime.strptime('2024-12-19 12:04:03', '%Y-%m-%d %H:%M:%S')
-    return BEIJING_TZ.localize(current)
+    """获取北京时间"""
+    return datetime.now(BEIJING_TZ)
 
 def calculate_days(start_date, end_date):
     """计算两个日期之间的天数，只考虑日期部分"""
