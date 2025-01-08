@@ -8,46 +8,53 @@
 </head>
 <body>
     <div class="container">
-        <h1 class="main-title">我们的恋爱纪念日</h1>
-        
-        <div class="date-range">
-            <span>2009年12月10日</span>
-            <span class="date-arrow">→</span>
-            <span id="current-date">2025年1月8日</span>
-        </div>
-
-        <div class="heart-container">
-            <div class="heart"></div>
-        </div>
-
-        <div class="couple-name">
-            灰老公和熊老婆已经在一起
-        </div>
-
-        <div class="days">{{ days_together }}</div>
-
-        <div class="motto">爱你一生一世</div>
-
-        <div class="countdown-container">
-            <div class="countdown-title">距离我们的16周年纪念日还有</div>
-            <div class="countdown-timer">
-                <div class="time-block">
-                    <div class="time-value" id="days">{{ '%02d' % time_to_anniversary.days }}</div>
-                    <div class="time-label">天</div>
+        <div class="content-wrapper">
+            <section class="header-section">
+                <h1 class="main-title">我们的恋爱纪念日</h1>
+                <div class="date-range">
+                    <span>2009年12月10日</span>
+                    <span class="date-arrow">❤</span>
+                    <span id="current-date">2025年12月10日</span>
                 </div>
-                <div class="time-block">
-                    <div class="time-value" id="hours">{{ '%02d' % time_to_anniversary.hours }}</div>
-                    <div class="time-label">时</div>
+            </section>
+
+            <section class="middle-section">
+                <div class="heart-container">
+                    <div class="heart"></div>
                 </div>
-                <div class="time-block">
-                    <div class="time-value" id="minutes">{{ '%02d' % time_to_anniversary.minutes }}</div>
-                    <div class="time-label">分</div>
+                
+                <div class="couple-name">
+                    我们相依相伴
                 </div>
-                <div class="time-block">
-                    <div class="time-value" id="seconds">{{ '%02d' % time_to_anniversary.seconds }}</div>
-                    <div class="time-label">秒</div>
+                
+                <div class="days">5508 个日夜</div>
+                
+                <div class="motto">此爱绵绵，岁岁年年</div>
+            </section>
+
+            <section class="footer-section">
+                <div class="countdown-container">
+                    <div class="countdown-title">距离我们的16周年纪念日还有</div>
+                    <div class="countdown-timer">
+                        <div class="time-block">
+                            <div class="time-value" id="days">{{ '%02d' % time_to_anniversary['days'] }}</div>
+                            <div class="time-label">天</div>
+                        </div>
+                        <div class="time-block">
+                            <div class="time-value" id="hours">{{ '%02d' % time_to_anniversary['hours'] }}</div>
+                            <div class="time-label">时</div>
+                        </div>
+                        <div class="time-block">
+                            <div class="time-value" id="minutes">{{ '%02d' % time_to_anniversary['minutes'] }}</div>
+                            <div class="time-label">分</div>
+                        </div>
+                        <div class="time-block">
+                            <div class="time-value" id="seconds">{{ '%02d' % time_to_anniversary['seconds'] }}</div>
+                            <div class="time-label">秒</div>
+                        </div>
+                    </div>
                 </div>
-            </div>
+            </section>
         </div>
     </div>
     <script src="/static/script.js"></script>
